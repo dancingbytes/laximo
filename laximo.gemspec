@@ -5,11 +5,11 @@ require 'laximo/version'
 
 Gem::Specification.new do |spec|
   spec.name          = "laximo"
-  spec.version       = SmsRu::VERSION
+  spec.version       = Laximo::VERSION
   spec.authors       = ["Ivan Piliaiev"]
   spec.email         = ["piliaiev@gmail.com"]
-  spec.description   = %q{Api for Laximo servises}
-  spec.summary       = %q{Api for Laximo servises}
+  spec.description   = %q{Api for Laximo services}
+  spec.summary       = %q{Api for Laximo services}
   spec.homepage      = "https://github.com/dancingbytes/laximo"
   spec.license       = "BSD"
 
