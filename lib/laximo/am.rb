@@ -1,7 +1,7 @@
  # encoding: utf-8
 module Laximo
 
-  class AM
+  class Am
 
     def initialize
 
@@ -156,6 +156,6 @@ module Laximo
 
     end # error_empty_params
 
-  end # AM
+  end # Am
 
 end # Laximo

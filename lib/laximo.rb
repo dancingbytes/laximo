@@ -1,7 +1,7 @@
 # encoding: utf-8
 require 'nokogiri'
 
-require 'net/uri'
+require 'uri'
 require 'net/http'
 
 require 'laximo/version'
