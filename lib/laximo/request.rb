@@ -33,7 +33,7 @@ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:SOAP-ENC="http://sch
     def call(msg)
 
       @request.body = REQUEST_MSG % {
-        msg: smg,
+        msg: msg,
         act: @soap_action
       }
 
