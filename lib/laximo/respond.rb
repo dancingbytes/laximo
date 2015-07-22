@@ -34,7 +34,7 @@ module Laximo
 
     def prepare_request(request)
 
-      if request.is_a?(::Net::HTTP)
+      if request.is_a?(::Net::HTTPOK)
         prepare_http(request)
       else
         prepare_error(request)
