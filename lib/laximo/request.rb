@@ -32,7 +32,7 @@ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:SOAP-ENC="http://sch
 
     def call(msg)
 
-      request.body = REQUEST_MSG % {
+      @request.body = REQUEST_MSG % {
         msg: smg,
         act: @soap_action
       }
@@ -66,10 +66,10 @@ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:SOAP-ENC="http://sch
 
     def set_request_params
 
-      request['User-Agent']   = ::Laximo.options.user_agent
-      request['Accept']       = "*/*"
-      request['Content-Type'] = "text/xml; charset=UTF-8"
-      request['SOAPAction']   = "\"#{@soap_action}\""
+      @request['User-Agent']   = ::Laximo.options.user_agent
+      @request['Accept']       = "*/*"
+      @request['Content-Type'] = "text/xml; charset=UTF-8"
+      @request['SOAPAction']   = "\"#{@soap_action}\""
 
       self
 
