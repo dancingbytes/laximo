@@ -5,7 +5,7 @@ module Laximo
 
     def initialize
 
-      @req = ::Laximo::Request.new(
+      @request = ::Laximo::Request.new(
         ::Laximo.options.am_soap_endpoint,
         ::Laximo.options.am_soap_action
       )
