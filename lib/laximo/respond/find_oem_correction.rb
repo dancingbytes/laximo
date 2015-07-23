@@ -6,7 +6,11 @@ module Laximo
     class FindOemCorrection < Laximo::Respond::Base
 
       def parsing_result(str)
-        str
+
+        str.xpath('//FindOEMCorrection/detail').inject([]) { |arr, node|
+          arr << attrs_to_hash(node)
+        }
+
       end # parsing_result
 
     end # FindOemCorrection

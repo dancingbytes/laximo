@@ -45,13 +45,13 @@ module Laximo
 
     def find_oem(*args)
 
-      return error_empty_params  if args.empty?
+      return error_empty_params if args.empty?
 
       resp = @request.call(
 
         construct_command(
           "FindOEM#{@locale}#{@brand}|OEM=%{str}#{@options}",
-          *args
+          args
         )
 
       )
@@ -62,13 +62,13 @@ module Laximo
 
     def find_replacements(*args)
 
-      return error_empty_params  if args.empty?
+      return error_empty_params if args.empty?
 
       resp = @request.call(
 
         construct_command(
           "FindReplacements#{@locale}|DetailId=%{str}",
-          *args
+          args
         )
 
       )
@@ -79,13 +79,13 @@ module Laximo
 
     def find_detail(*args)
 
-      return error_empty_params  if args.empty?
+      return error_empty_params if args.empty?
 
       resp = @request.call(
 
         construct_command(
           "FindDetail#{@locale}|DetailId=%{str}#{@options}",
-          *args
+          args
         )
 
       )
@@ -96,13 +96,13 @@ module Laximo
 
     def find_oem_correction(*args)
 
-      return error_empty_params  if args.empty?
+      return error_empty_params if args.empty?
 
       resp = @request.call(
 
         construct_command(
           "FindOEMCorrection#{@locale}#{@brand}|OEM=%{str}",
-          *args
+          args
         )
 
       )
@@ -113,13 +113,13 @@ module Laximo
 
     def manufacturer_info(*args)
 
-      return error_empty_params  if args.empty?
+      return error_empty_params if args.empty?
 
       resp = @request.call(
 
         construct_command(
           "ManufacturerInfo#{@locale}|ManufacturerId=%{str}",
-          *args
+          args
         )
 
       )
@@ -142,7 +142,7 @@ module Laximo
 
     def construct_command(command, args)
 
-      agrs.inject([]) { |arr, el|
+      args.inject([]) { |arr, el|
         arr << (command % { str: el })
       }.join('\n')
 
@@ -150,8 +150,8 @@ module Laximo
 
     def error_empty_params
 
-      ::Laximo::Respond.new(
-        ::ArgumentError.new('Не заданный параметры запроса')
+      ::Laximo::Respond::Base.new(
+        ::ArgumentError.new('Не заданны параметры запроса')
       )
 
     end # error_empty_params

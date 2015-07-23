@@ -40,6 +40,18 @@ module Laximo
 
       private
 
+      def attrs_to_hash(node)
+
+        return {} if node.nil?
+
+        h = {}
+        node.attributes.each { |key, snd|
+          h[key.to_sym] = snd.value
+        }
+        h
+
+      end # attrs_to_hash
+
       def prepare_request(request)
 
         if request.is_a?(::Net::HTTPOK)
@@ -59,28 +71,22 @@ module Laximo
 
       def prepare_http(http)
 
-        @error  = nil
-        @result = xml_doc(http.body)
-
-      end # prepare_http
-
-      def xml_doc(body)
-
         begin
 
-          doc = ::Nokogiri::XML(body)
+          doc = ::Nokogiri::XML(http.body)
           doc.remove_namespaces!
 
           res = doc.xpath(RESPONSE_PATH).children[0].to_s
           str_to_xml_tags!(res)
 
-          parsing_result(::Nokogiri::XML(res))
+          @error  = nil
+          @result = parsing_result(::Nokogiri::XML(res))
 
         rescue => ex
-          ex
+          prepare_error(ex)
         end
 
-      end # xml_doc
+      end # prepare_http
 
       def str_to_xml_tags!(str)
 

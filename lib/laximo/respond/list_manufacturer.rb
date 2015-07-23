@@ -8,14 +8,7 @@ module Laximo
       def parsing_result(str)
 
         str.xpath('//ListManufacturer/row').inject([]) { |arr, node|
-
-          h = {}
-          node.attributes.each { |key, snd|
-            h[key.to_sym] = snd.value
-          }
-
-          arr << h
-
+          arr << attrs_to_hash(node)
         }
 
       end # parsing_result
