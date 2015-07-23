@@ -8,6 +8,12 @@ require 'laximo/version'
 require 'laximo/options'
 require 'laximo/request'
 require 'laximo/respond'
+
+Dir[File.join(File.dirname(__FILE__), '/laximo/respond/**/*.rb')].each do |libs|
+  require libs
+end
+
+
 require 'laximo/am'
 
 module Laximo

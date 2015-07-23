@@ -56,7 +56,7 @@ module Laximo
 
       )
 
-      ::Laximo::Respond.new(resp)
+      ::Laximo::Respond::FindOem.new(resp)
 
     end # find_oem
 
@@ -73,7 +73,7 @@ module Laximo
 
       )
 
-      ::Laximo::Respond.new(resp)
+      ::Laximo::Respond::FindReplacements.new(resp)
 
     end # find_replacements
 
@@ -90,7 +90,7 @@ module Laximo
 
       )
 
-      ::Laximo::Respond.new(resp)
+      ::Laximo::Respond::FindDetail.new(resp)
 
     end # find_detail
 
@@ -107,7 +107,7 @@ module Laximo
 
       )
 
-      ::Laximo::Respond.new(resp)
+      ::Laximo::Respond::FindOemCorrection.new(resp)
 
     end # find_oem_correction
 
@@ -124,7 +124,7 @@ module Laximo
 
       )
 
-      ::Laximo::Respond.new(resp)
+      ::Laximo::Respond::Manufacturer_Info.new(resp)
 
     end # manufacturer_info
 
@@ -134,7 +134,7 @@ module Laximo
         "ListManufacturer#{@locale}"
       )
 
-      ::Laximo::Respond.new(resp)
+      ::Laximo::Respond::ListManufacturer.new(resp)
 
     end # list_manufacturer
 

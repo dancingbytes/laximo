@@ -1,64 +1,99 @@
 # encoding: utf-8
 module Laximo
 
-  class Respond
+  module Respond
 
-    def initialize(request)
+    class Base
 
-      @error  = nil
-      @result = nil
+      RESPONSE_PATH = '//QueryDataResponse/return'.freeze
 
-      prepare_request(request)
+      def initialize(request)
 
-    end # initialize
+        @error  = nil
+        @result = []
 
-    def success?
-      @error.nil? && !@result.nil?
-    end # success?
+        prepare_request(request)
 
-    def failure?
-      @result.nil? && !@error.nil?
-    end # failure?
+      end # initialize
 
-    alias :error? :failure?
+      def success?
+        @error.nil?
+      end # success?
 
-    def error
-      @error
-    end # error
+      def failure?
+        !@error.nil?
+      end # failure?
 
-    def result
-      @result
-    end # result
+      alias :error? :failure?
 
-    private
+      def error
+        @error
+      end # error
 
-    def prepare_request(request)
+      def result
+        @result
+      end # result
 
-      if request.is_a?(::Net::HTTPOK)
-        prepare_http(request)
-      else
-        prepare_error(request)
-     end
+      def parsing_result(str)
+        ::NotImplementedError.new("Метод #{parsing_result} не реализован в классе #{self.class.name}")
+      end # parsing_result
 
-    end # prepare_request
+      private
 
-    def prepare_error(err)
+      def prepare_request(request)
 
-      @result = nil
-      @error  = err
+        if request.is_a?(::Net::HTTPOK)
+          prepare_http(request)
+        else
+          prepare_error(request)
+       end
 
-    end # prepare_error
+      end # prepare_request
 
-    def prepare_http(http)
+      def prepare_error(err)
 
-      @error  = nil
-      @result = xml_doc(http.body)
+        @result = []
+        @error  = err
 
-    end # prepare_http
+      end # prepare_error
 
-    def xml_doc(body)
-      @xml_doc = ::Nokogiri::XML::Document.parse(body)
-    end # xml_doc
+      def prepare_http(http)
+
+        @error  = nil
+        @result = xml_doc(http.body)
+
+      end # prepare_http
+
+      def xml_doc(body)
+
+        begin
+
+          doc = ::Nokogiri::XML(body)
+          doc.remove_namespaces!
+
+          res = doc.xpath(RESPONSE_PATH).children[0].to_s
+          str_to_xml_tags!(res)
+
+          parsing_result(::Nokogiri::XML(res))
+
+        rescue => ex
+          ex
+        end
+
+      end # xml_doc
+
+      def str_to_xml_tags!(str)
+
+        str.gsub!('&amp;', '&')
+        str.gsub!('&apos;', "'")
+        str.gsub!('&quot;', '"')
+        str.gsub!('&gt;', '>')
+        str.gsub!('&lt;', '<')
+        str
+
+      end # str_to_xml_tags!
+
+    end # Base
 
   end # Respond
 
