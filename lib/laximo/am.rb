@@ -15,7 +15,7 @@ module Laximo
     def find_oem(
       oem,
       brand:    nil,
-      opts:     [],
+      options:  [],
       locale:   'ru_RU'
     )
 
@@ -24,7 +24,7 @@ module Laximo
         locale(locale).
         brand(brand).
         oem(oem).
-        options(opts).
+        options(options).
         call(@request)
 
       ::Laximo::Respond::FindOem.new(resp)
@@ -48,7 +48,7 @@ module Laximo
 
     def find_detail(
       detail_id,
-      opts:     [],
+      options:  [],
       locale:   'ru_RU'
     )
 
@@ -56,7 +56,7 @@ module Laximo
         new('FindDetail').
         locale(locale).
         detail_id(detail_id).
-        options(opts).
+        options(options).
         call(@request)
 
       ::Laximo::Respond::FindDetail.new(resp)

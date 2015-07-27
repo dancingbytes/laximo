@@ -181,7 +181,7 @@ module Laximo
       @str = "#{@func_name}#{@locale}"
 
       @query.each { |key, value|
-        str << "|#{key}=#{value}" unless value.nil?
+        @str << "|#{key}=#{value}" unless value.nil?
       }
 
       @str
