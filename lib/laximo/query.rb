@@ -154,13 +154,13 @@ module Laximo
 
     end # filter
 
-    def QuickGroupId(v = nil)
+    def quick_group_id(v = nil)
 
       @str                  = nil
       @query[:QuickGroupId] = escape(v)
       self
 
-    end # QuickGroupId
+    end # quick_group_id
 
     def all(v = nil)
 
