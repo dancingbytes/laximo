@@ -7,9 +7,7 @@ xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www
 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/">
   <SOAP-ENV:Body>
     <ns5692:QueryData xmlns:ns5692="%{act}">
-      <request xsi:type="xsd:string">
-      %{msg}
-      </request>
+      <request xsi:type="xsd:string">%{msg}</request>
     </ns5692:QueryData>
   </SOAP-ENV:Body>
 </SOAP-ENV:Envelope>).freeze

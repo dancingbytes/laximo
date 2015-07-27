@@ -73,6 +73,20 @@ module Laximo
 
     end # am_soap_endpoint
 
+    def oem_soap_action(str = nil)
+
+      return @oem_soap_action if str.nil?
+      @oem_soap_action = str
+
+    end # oem_soap_action
+
+    def oem_soap_endpoint(str = nil)
+
+      return @oem_soap_endpoint if str.nil?
+      @oem_soap_endpoint = str
+
+    end # oem_soap_endpoint
+
   end # Options
 
 end # Laximo

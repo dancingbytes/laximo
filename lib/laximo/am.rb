@@ -9,152 +9,104 @@ module Laximo
         ::Laximo.options.am_soap_endpoint,
         ::Laximo.options.am_soap_action
       )
-      reset
 
     end # initialize
 
-    def reset
+    def find_oem(
+      oem,
+      brand:    nil,
+      opts:     [],
+      locale:   'ru_RU'
+    )
 
-      locale('ru_RU')
-      options
-      brand
-      self
-
-    end # clean
-
-    def locale(loc = nil)
-
-      @locale = loc.blank? ? '' : ":Locale=#{loc}"
-      self
-
-    end # locale
-
-    def options(*args)
-
-      @options = args.empty? ? '' : "|Options=#{args.join(',')}"
-      self
-
-    end # options
-
-    def brand(str = nil)
-
-      @brand = str.blank? ? '' : "|Brand=#{str}"
-      self
-
-    end # brand
-
-    def find_oem(*args)
-
-      return error_empty_params if args.empty?
-
-      resp = @request.call(
-
-        construct_command(
-          "FindOEM#{@locale}#{@brand}|OEM=%{str}#{@options}",
-          args
-        )
-
-      )
+      resp = ::Laximo::Query.
+        new('FindOEM').
+        locale(locale).
+        brand(brand).
+        oem(oem).
+        options(opts).
+        call(@request)
 
       ::Laximo::Respond::FindOem.new(resp)
 
     end # find_oem
 
-    def find_replacements(*args)
+    def find_replacements(
+      detail_id,
+      locale: 'ru_RU'
+    )
 
-      return error_empty_params if args.empty?
-
-      resp = @request.call(
-
-        construct_command(
-          "FindReplacements#{@locale}|DetailId=%{str}",
-          args
-        )
-
-      )
+      resp = ::Laximo::Query.
+        new('FindReplacements').
+        locale(locale).
+        detail_id(detail_id).
+        call(@request)
 
       ::Laximo::Respond::FindReplacements.new(resp)
 
     end # find_replacements
 
-    def find_detail(*args)
+    def find_detail(
+      detail_id,
+      opts:     [],
+      locale:   'ru_RU'
+    )
 
-      return error_empty_params if args.empty?
-
-      resp = @request.call(
-
-        construct_command(
-          "FindDetail#{@locale}|DetailId=%{str}#{@options}",
-          args
-        )
-
-      )
+      resp = ::Laximo::Query.
+        new('FindDetail').
+        locale(locale).
+        detail_id(detail_id).
+        options(opts).
+        call(@request)
 
       ::Laximo::Respond::FindDetail.new(resp)
 
     end # find_detail
 
-    def find_oem_correction(*args)
+    def find_oem_correction(
+      oem,
+      brand:    nil,
+      locale:   'ru_RU'
+    )
 
-      return error_empty_params if args.empty?
-
-      resp = @request.call(
-
-        construct_command(
-          "FindOEMCorrection#{@locale}#{@brand}|OEM=%{str}",
-          args
-        )
-
-      )
+      resp = ::Laximo::Query.
+        new('FindOEMCorrection').
+        locale(locale).
+        brand(brand).
+        oem(oem).
+        call(@request)
 
       ::Laximo::Respond::FindOemCorrection.new(resp)
 
     end # find_oem_correction
 
-    def manufacturer_info(*args)
+    def manufacturer_info(
+      manufacturer_id,
+      locale: 'ru_RU'
+    )
 
-      return error_empty_params if args.empty?
-
-      resp = @request.call(
-
-        construct_command(
-          "ManufacturerInfo#{@locale}|ManufacturerId=%{str}",
-          args
-        )
-
-      )
+      resp = ::Laximo::Query.
+        new('ManufacturerInfo').
+        locale(locale).
+        manufacturer_id(manufacturer_id).
+        call(@request)
 
       ::Laximo::Respond::Manufacturer_Info.new(resp)
 
     end # manufacturer_info
 
-    def list_manufacturer
+    def list_manufacturer(
+      locale: 'ru_RU'
+    )
 
-      resp = @request.call(
-        "ListManufacturer#{@locale}"
-      )
+      resp = ::Laximo::Query.
+        new('ListManufacturer').
+        locale(locale).
+        call(@request)
 
       ::Laximo::Respond::ListManufacturer.new(resp)
 
     end # list_manufacturer
-
-    private
-
-    def construct_command(command, args)
-
-      args.inject([]) { |arr, el|
-        arr << (command % { str: el })
-      }.join('\n')
-
-    end # construct_command
-
-    def error_empty_params
-
-      ::Laximo::Respond::Base.new(
-        ::ArgumentError.new('Не заданны параметры запроса')
-      )
-
-    end # error_empty_params
 
   end # Am
 

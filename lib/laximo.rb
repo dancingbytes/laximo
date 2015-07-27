@@ -13,8 +13,9 @@ Dir[File.join(File.dirname(__FILE__), '/laximo/respond/**/*.rb')].each do |libs|
   require libs
 end
 
-
+require 'laximo/query'
 require 'laximo/am'
+require 'laximo/oem'
 
 module Laximo
 
@@ -27,6 +28,10 @@ module Laximo
   def am
     ::Laximo::Am.new
   end # am
+
+  def oem
+    ::Laximo::Oem.new
+  end # oem
 
 end # Laximo
 
