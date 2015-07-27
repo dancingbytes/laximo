@@ -19,7 +19,7 @@ module Laximo
 
       resp = ::Laximo::Query.
         new('ListCatalogs').
-        locale(locale)
+        locale(locale).
         ssd(ssd).
         call(@request)
 
@@ -35,7 +35,7 @@ module Laximo
 
       resp = ::Laximo::Query.
         new('GetCatalogInfo').
-        locale(locale)
+        locale(locale).
         ssd(ssd).
         catalog(catalog).
         call(@request)
