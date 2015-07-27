@@ -43,10 +43,11 @@ Laximo.options.debug              false
   * [Laximo.am.list_manufacturer(locale: 'ru_RU')](http://laximo.net/index.php/Laximo_Web-services:AM/ListManufacturer)
 
 Данные методы возвращают объект, у которого заданы методы:
-    * `success?` - успешна ли операция
-    * `error?` - есть ли ошибка
-    * `error` - возвращает ошибку или `nil`, если ошибки не было
-    * `result` - возвращает массив хешей или пустой массив, если ничего не найдено, или если в процессе выполения произошла ошибка.
+
+  * `success?` - успешна ли операция
+  * `error?` - есть ли ошибка
+  * `error` - возвращает ошибку или `nil`, если ошибки не было
+  * `result` - возвращает массив хешей или пустой массив, если ничего не найдено, или если в процессе выполения произошла ошибка.
 
 ### Методы web-сервиса [Laximo.OEM](http://laximo.net/index.php/Laximo_Web-services:OEM:Laximo.OEM)
   * [Laximo.oem.list_catalogs(ssd = nil, locale: 'ru_RU')](http://laximo.net/index.php/Laximo_Web-services:OEM:ListCatalogs)
@@ -70,10 +71,11 @@ Laximo.options.debug              false
   * [Laximo.oem.list_quick_detail(catalog, vehicle_id, quick_group_id, all, ssd: nil, localized: false, locale: 'ru_RU')](http://laximo.net/index.php/Laximo_Web-services:OEM:ListQuickDetail)
 
 Данные методы возвращают объект, у которого заданы методы:
-    * `success?` - успешна ли операция
-    * `error?` - есть ли ошибка
-    * `error` - возвращает ошибку или `nil`, если ошибки не было
-    * `result` - возвращает массив хешей или пустой массив, если ничего не найдено, или если в процессе выполения произошла ошибка.
+
+  * `success?` - успешна ли операция
+  * `error?` - есть ли ошибка
+  * `error` - возвращает ошибку или `nil`, если ошибки не было
+  * `result` - возвращает массив хешей или пустой массив, если ничего не найдено, или если в процессе выполения произошла ошибка.
 
 ### Примеры использования
 ```ruby
