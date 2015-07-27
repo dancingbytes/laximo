@@ -42,7 +42,7 @@ Laximo.options.debug              false
   * [Laximo.am.manufacturer_info(manufacturer_id, locale: 'ru_RU')](http://laximo.net/index.php/Laximo_Web-services:AM:ManufacturerInfo)
   * [Laximo.am.list_manufacturer(locale: 'ru_RU')](http://laximo.net/index.php/Laximo_Web-services:AM/ListManufacturer)
 
-  Данные методы возвращают объект, у которого заданы методы:
+Данные методы возвращают объект, у которого заданы методы:
     * `success?` - успешна ли операция
     * `error?` - есть ли ошибка
     * `error` - возвращает ошибку или `nil`, если ошибки не было
@@ -69,7 +69,7 @@ Laximo.options.debug              false
   * [Laximo.oem.list_quick_group(catalog, vehicle_id, ssd: nil, locale: 'ru_RU')](http://laximo.net/index.php/Laximo_Web-services:OEM:ListQuickGroup)
   * [Laximo.oem.list_quick_detail(catalog, vehicle_id, quick_group_id, all, ssd: nil, localized: false, locale: 'ru_RU')](http://laximo.net/index.php/Laximo_Web-services:OEM:ListQuickDetail)
 
-  Данные методы возвращают объект, у которого заданы методы:
+Данные методы возвращают объект, у которого заданы методы:
     * `success?` - успешна ли операция
     * `error?` - есть ли ошибка
     * `error` - возвращает ошибку или `nil`, если ошибки не было
