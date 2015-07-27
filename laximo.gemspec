@@ -4,6 +4,7 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'laximo/version'
 
 Gem::Specification.new do |spec|
+
   spec.name          = "laximo"
   spec.version       = Laximo::VERSION
   spec.authors       = ["Ivan Piliaiev"]
@@ -20,9 +21,6 @@ Gem::Specification.new do |spec|
 
   spec.required_ruby_version = '>= 1.9.3'
 
-  spec.add_development_dependency "bundler", "~> 1.3"
-  spec.add_development_dependency "rake"
-
-  spec.add_dependency "nokogiri"
+  spec.add_dependency "nokogiri", '~> 1.6'
 
 end
