@@ -90,3 +90,8 @@ res.result   # [{:detailid=>"31454425", :formattedoem=>"078100105NX", :manufactu
 После вызова одного из методов апи, может быть возвращены разного рода ошибки. Но, есть спец. ошибки:
   * `Net::HTTPNotFound` (404) -- ваш ssl-сертификат не позвоялет вызывать данный метод апи
   * `Net::HTTPBadRequest` (400) -- не задан ssl-сертификат
+
+### Лицензия
+
+Автор: [Tyralion](mailto:piliaiev@gmail.com)
+Copyright (c) 2015 DansingBytes.ru, под лицензией BSD
