@@ -67,7 +67,7 @@ module Laximo
             h[key.to_sym] = snd.value
           }
 
-          h[:children] = nodes_to_hash(node.children, true) if recursive
+          h[:children] = nodes_to_hash(node.children, recursive: true) if recursive
           arr << h
 
         }
@@ -89,19 +89,25 @@ module Laximo
 
         @result = []
 
-        begin
+        if http.is_a?(::Net::HTTPBadRequest)
+          @error = ::Laximo::SslCertificateError.new('SSL cetificate not found or invalidate')
+        else
 
-          doc = ::Nokogiri::XML(http.body)
-          doc.remove_namespaces!
+          begin
 
-          if (res = doc.xpath(RESPONSE_SOAP_ERROR)).empty?
-            @error = http
-          else
-            @error = ::Laximo::SoapError.new(res.text)
+            doc = ::Nokogiri::XML(http.body)
+            doc.remove_namespaces!
+
+            if (res = doc.xpath(RESPONSE_SOAP_ERROR)).empty?
+              @error = http
+            else
+              @error = soap_errors(res.text)
+            end
+
+          rescue => ex
+            @error = ex
           end
 
-        rescue => ex
-          @error = ex
         end
 
       end # prepare_error
@@ -127,6 +133,15 @@ module Laximo
         end
 
       end # prepare_http
+
+      def soap_errors(err_txt)
+
+        err_name, msg = err_txt.split(':')
+
+        err_cls = Laximo::ERRORS[err_name] || ::Laximo::SoapError
+        err_cls.new(msg)
+
+      end # soap_errors
 
       def str_to_xml_tags!(str)
 

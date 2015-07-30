@@ -86,12 +86,22 @@ res.error    # nil
 res.result   # [{:detailid=>"31454425", :formattedoem=>"078100105NX", :manufacturer=>"SEAT", ...]
 ```
 
-### Замечание
-После вызова одного из методов апи, может быть возвращены разного рода ошибки. Но, есть спец. ошибки:
-  * `Net::HTTPNotFound` (404) -- ваш ssl-сертификат не позвоялет вызывать данный метод апи
-  * `Net::HTTPBadRequest` (400) -- не задан ssl-сертификат
+### Ошибки
+После вызова одного из методов апи, может быть возвращены разного рода ошибки.
+  * `Laximo::SslCertificateError` - ваш ssl-сертификат не найден или недействителен
+  * `Laximo::SoapInvalidParameterError` - неверное значение параметра в запросе к web-сервису
+  * `Laximo::SoapCatalogNotExistsError` - каталог не зарегистрирован в системе
+  * `Laximo::SoapInvalidRequestError` - не верно сформирован запрос к web-сервису
+  * `Laximo::SoapUnknownCommandError` - команда не известна
+  * `Laximo::SoapAccessDeniedError` - доступ запрещен
+  * `Laximo::SoapNotSupportedError` - функция не поддерживается каталогом
+  * `SoapGroupIsNotSearchableError` - поиск по группе запрещён, в связи с слишком большим количеством входящих в группу узлов
+  * `Laximo::SoapError` - общая ошибка протокола SOAP
+
+Помимо переисленного списка ошибок, в ответе могут быть возвращены стандартные ошибки библиотеки `Net::HTTP` и интерпретатора Ruby.
 
 ### Лицензия
 
 Автор: [Tyralion](mailto:piliaiev@gmail.com)
+
 Copyright (c) 2015 DansingBytes.ru, под лицензией BSD
