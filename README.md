@@ -2,7 +2,7 @@
 
 ### Поддержка web-сервисов:
   * [Laximo.Aftermarket](http://laximo.net/index.php/%D0%A1%D0%BB%D1%83%D0%B6%D0%B5%D0%B1%D0%BD%D0%B0%D1%8F:%D0%9C%D0%BE%D0%B9_%D1%8F%D0%B7%D1%8B%D0%BA/:Laximo_Web-services:AM:Laximo.Aftermarket)
-  * [Laximo.OЕМ](http://laximo.net/index.php/%D0%A1%D0%BB%D1%83%D0%B6%D0%B5%D0%B1%D0%BD%D0%B0%D1%8F:%D0%9C%D0%BE%D0%B9_%D1%8F%D0%B7%D1%8B%D0%BA/:Laximo_Web-services:OEM:Laximo.OEM) (в разработке)
+  * [Laximo.OЕМ](http://laximo.net/index.php/%D0%A1%D0%BB%D1%83%D0%B6%D0%B5%D0%B1%D0%BD%D0%B0%D1%8F:%D0%9C%D0%BE%D0%B9_%D1%8F%D0%B7%D1%8B%D0%BA/:Laximo_Web-services:OEM:Laximo.OEM)
 
 ### Поддерживаемые версии Ruby
 Ruby 1.9.3+
@@ -63,9 +63,9 @@ Laximo.options.debug              false
   * [Laximo.oem.list_units(catalog, vehicle_id, ssd, category_id: nil, localized: false, locale: 'ru_RU')](http://laximo.net/index.php/Laximo_Web-services:OEM:ListUnits)
   * [Laximo.oem.list_categories(catalog, vehicle_id, ssd, category_id: nil, locale: 'ru_RU')](http://laximo.net/index.php/Laximo_Web-services:OEM:ListCategories)
   * [Laximo.oem.get_filter_by_unit(catalog, unit_id, vehicle_id, filter, ssd, locale: 'ru_RU')](http://laximo.net/index.php/Laximo_Web-services:OEM:GetFilterByUnit)
-  * [Laximo.oem.get_unit_info(catalog, ssd, unit_id: nil, localized: false, locale: 'ru_RU')](http://laximo.net/index.php/Laximo_Web-services:OEM:GetUnitInfo)
-  * [Laximo.oem.list_detail_by_unit(catalog, ssd, unit_id: nil, localized: false, locale: 'ru_RU')](http://laximo.net/index.php/Laximo_Web-services:OEM:ListDetailByUnit)
-  * [Laximo.oem.list_image_map_by_unit(catalog, ssd, unit_id: nil)](http://laximo.net/index.php/Laximo_Web-services:OEM:ListImageMapByUnit)
+  * [Laximo.oem.get_unit_info(catalog, ssd, unit_id, localized: false, locale: 'ru_RU')](http://laximo.net/index.php/Laximo_Web-services:OEM:GetUnitInfo)
+  * [Laximo.oem.list_detail_by_unit(catalog, ssd, unit_id, localized: false, locale: 'ru_RU')](http://laximo.net/index.php/Laximo_Web-services:OEM:ListDetailByUnit)
+  * [Laximo.oem.list_image_map_by_unit(catalog, ssd, unit_id)](http://laximo.net/index.php/Laximo_Web-services:OEM:ListImageMapByUnit)
   * [Laximo.oem.get_filter_by_detail(catalog, unit_id, detail_id, filter, ssd, locale: 'ru_RU')](http://laximo.net/index.php/Laximo_Web-services:OEM:GetFilterByDetail)
   * [Laximo.oem.list_quick_group(catalog, vehicle_id, ssd: nil, locale: 'ru_RU')](http://laximo.net/index.php/Laximo_Web-services:OEM:ListQuickGroup)
   * [Laximo.oem.list_quick_detail(catalog, vehicle_id, quick_group_id, all, ssd: nil, localized: false, locale: 'ru_RU')](http://laximo.net/index.php/Laximo_Web-services:OEM:ListQuickDetail)

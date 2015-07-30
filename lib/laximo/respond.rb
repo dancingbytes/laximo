@@ -5,7 +5,8 @@ module Laximo
 
     class Base
 
-      RESPONSE_PATH = '//QueryDataResponse/return'.freeze
+      RESPONSE_RESULT     = '//QueryDataResponse/return'.freeze
+      RESPONSE_SOAP_ERROR = '//Fault/faultstring'.freeze
 
       def initialize(request)
 
@@ -40,7 +41,7 @@ module Laximo
 
       private
 
-      def attrs_to_hash(node)
+      def node_to_hash(node)
 
         return {} if node.nil?
 
@@ -48,9 +49,31 @@ module Laximo
         node.attributes.each { |key, snd|
           h[key.to_sym] = snd.value
         }
+
+        return {} if h.empty?
+        yield(h, node) if block_given?
+
         h
 
-      end # attrs_to_hash
+      end # node_to_hash
+
+      def nodes_to_hash(nodes, recursive: true)
+
+        arr = []
+        nodes.each { |node|
+
+          h = {}
+          node.attributes.each { |key, snd|
+            h[key.to_sym] = snd.value
+          }
+
+          h[:children] = nodes_to_hash(node.children, true) if recursive
+          arr << h
+
+        }
+        arr
+
+      end # nodes_to_hash
 
       def prepare_request(request)
 
@@ -62,10 +85,24 @@ module Laximo
 
       end # prepare_request
 
-      def prepare_error(err)
+      def prepare_error(http)
 
         @result = []
-        @error  = err
+
+        begin
+
+          doc = ::Nokogiri::XML(http.body)
+          doc.remove_namespaces!
+
+          if (res = doc.xpath(RESPONSE_SOAP_ERROR)).empty?
+            @error = http
+          else
+            @error = ::Laximo::SoapError.new(res.text)
+          end
+
+        rescue => ex
+          @error = ex
+        end
 
       end # prepare_error
 
@@ -76,21 +113,23 @@ module Laximo
           doc = ::Nokogiri::XML(http.body)
           doc.remove_namespaces!
 
-          res = doc.xpath(RESPONSE_PATH).children[0].to_s
+          res = doc.xpath(RESPONSE_RESULT).children[0].to_s
           str_to_xml_tags!(res)
 
           @error  = nil
-          @result = parsing_result(::Nokogiri::XML(res))
+          @result = parsing_result(::Nokogiri::XML(res)) || []
 
         rescue => ex
-          prepare_error(ex)
+
+          @result = []
+          @error  = ex
+
         end
 
       end # prepare_http
 
       def str_to_xml_tags!(str)
 
-        str.gsub!('&amp;', '&')
         str.gsub!('&apos;', "'")
         str.gsub!('&quot;', '"')
         str.gsub!('&gt;', '>')

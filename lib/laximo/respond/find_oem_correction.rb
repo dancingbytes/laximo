@@ -9,20 +9,14 @@ module Laximo
 
         str.xpath('//FindOEMCorrection/detail').inject([]) { |arr, node|
 
-          h = attrs_to_hash(node)
+          h = node_to_hash(node)
 
-          h[:images] = node.xpath('./images/image').inject([]) { |arr1, n1|
-            arr1 << attrs_to_hash(n1)
-          }
+          h[:images]        = nodes_to_hash(node.xpath('./images/image'))
+          h[:properties]    = nodes_to_hash(node.xpath('./properties/property'))
+          h[:replacements]  = node.xpath('./replacements/replacement').inject([]) { |arr1, n1|
 
-          h[:properties] = node.xpath('./properties/property').inject([]) { |arr1, n1|
-            arr1 << attrs_to_hash(n1)
-          }
-
-          h[:replacements] = node.xpath('./replacements/replacement').inject([]) { |arr1, n1|
-
-            h1 = attrs_to_hash(n1)
-            h2 = attrs_to_hash(n1.children[0])
+            h1 = node_to_hash(n1)
+            h2 = node_to_hash(n1.children[0])
             h1.merge!(h2)
 
             arr1 << h1

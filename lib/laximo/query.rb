@@ -193,7 +193,7 @@ module Laximo
     private
 
     def escape(str)
-      str.nil? ? nil : ::String.new(str)
+      str.nil? ? nil : String(str)
     end # escape
 
   end # Query

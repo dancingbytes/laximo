@@ -204,7 +204,7 @@ module Laximo
       catalog,
       vehicle_id,
       ssd,
-      category_id:  nil,
+      category_id:  -1,
       localized:    false,
       locale:       'ru_RU'
     )
@@ -227,7 +227,7 @@ module Laximo
       catalog,
       vehicle_id,
       ssd,
-      category_id:  nil,
+      category_id:  -1,
       locale:       'ru_RU'
     )
 
@@ -270,7 +270,7 @@ module Laximo
     def get_unit_info(
       catalog,
       ssd,
-      unit_id:    nil,
+      unit_id,
       localized:  false,
       locale:     'ru_RU'
     )
@@ -291,7 +291,7 @@ module Laximo
     def list_detail_by_unit(
       catalog,
       ssd,
-      unit_id:    nil,
+      unit_id,
       localized:  false,
       locale:     'ru_RU'
     )
@@ -312,7 +312,7 @@ module Laximo
     def list_image_map_by_unit(
       catalog,
       ssd,
-      unit_id: nil
+      unit_id
     )
 
       resp = ::Laximo::Query.

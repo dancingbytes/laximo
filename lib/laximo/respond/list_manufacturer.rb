@@ -6,11 +6,7 @@ module Laximo
     class ListManufacturer < Laximo::Respond::Base
 
       def parsing_result(str)
-
-        str.xpath('//ListManufacturer/row').inject([]) { |arr, node|
-          arr << attrs_to_hash(node)
-        }
-
+        nodes_to_hash(str.xpath('//ListManufacturer/row'))
       end # parsing_result
 
     end # ListManufacturer

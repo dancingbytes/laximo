@@ -6,11 +6,7 @@ module Laximo
     class FindReplacements < Laximo::Respond::Base
 
       def parsing_result(str)
-
-        str.xpath('//FindReplacements/row').inject([]) { |arr, node|
-          arr << attrs_to_hash(node)
-        }
-
+        nodes_to_hash(str.xpath('//FindReplacements/row'), recursive: false)
       end # parsing_result
 
     end # FindReplacements

@@ -6,8 +6,18 @@ module Laximo
     class GetFilterByUnit < Laximo::Respond::Base
 
       def parsing_result(str)
-        str
-      end
+
+        str.xpath('//GetFilterByUnit/row').inject([]) { |arr, node|
+
+          h = node_to_hash(node) { |h1, n1|
+            h1[:values] = nodes_to_hash(n1.xpath('./values/row'))
+          }
+
+          arr < h unless h.empty?
+
+        }
+
+      end # parsing_result
 
     end # GetFilterByUnit
 

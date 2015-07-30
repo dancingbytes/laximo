@@ -6,6 +6,7 @@ require 'net/http'
 
 require 'laximo/version'
 require 'laximo/options'
+require 'laximo/errors'
 require 'laximo/request'
 require 'laximo/respond'
 
