@@ -98,6 +98,14 @@ res.result   # [{:detailid=>"31454425", :formattedoem=>"078100105NX", :manufactu
   * `SoapGroupIsNotSearchableError` - поиск по группе запрещён, в связи с слишком большим количеством входящих в группу узлов
   * `Laximo::SoapError` - общая ошибка протокола SOAP
 
+```ruby
+res = Laximo.oem.get_filter_by_detail('AP1211', '', '', '', '')
+res.success? # false
+res.error?   # true
+res.error    # <Laximo::SoapInvalidParameterError: UnitId>
+res.result   # []
+```
+
 Помимо переисленного списка ошибок, в ответе могут быть возвращены стандартные ошибки библиотеки `Net::HTTP` и интерпретатора Ruby.
 
 ### Лицензия
