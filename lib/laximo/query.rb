@@ -34,6 +34,24 @@ module Laximo
 
     end # catalog
 
+    def operation(v = nil)
+
+      @str                = nil
+      @query[:operation]  = escape(v)
+      self
+
+    end # operation
+
+    def param(v = nil)
+
+      @str  = nil
+      if v.is_a?(Hash) && !v.empty?
+        @query[v.keys.first] = escape(v.values.first)
+      end
+      self
+
+    end # param
+
     def localized(v = false)
 
       @str                = nil

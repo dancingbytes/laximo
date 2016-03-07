@@ -7,7 +7,7 @@ Gem::Specification.new do |spec|
 
   spec.name          = "laximo"
   spec.version       = Laximo::VERSION
-  spec.authors       = ["Ivan Piliaiev"]
+  spec.authors       = ["Ivan Pilyaev"]
   spec.email         = ["piliaiev@gmail.com"]
   spec.description   = %q{Api for Laximo services}
   spec.summary       = %q{Api for Laximo services}

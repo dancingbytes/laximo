@@ -88,12 +88,15 @@ module Laximo
 
     end # find_vehicle_by_frame
 
+    # TODO: Устаревший метод
     def get_wizard(
       catalog,
       wizard_id:  nil,
       value_id:   nil,
       locale:     'ru_RU'
     )
+
+      ::Laximo.deprecated!
 
       resp = ::Laximo::Query.
         new('GetWizard').
@@ -141,6 +144,7 @@ module Laximo
 
     end # get_wizard_next_step2
 
+    # TODO: Устаревший метод
     def find_vehicle_by_wizard(
       catalog,
       wizard_id,
@@ -148,6 +152,8 @@ module Laximo
       localized:  false,
       locale:     'ru_RU'
     )
+
+      ::Laximo.deprecated!
 
       resp = ::Laximo::Query.
         new('FindVehicleByWizard').
@@ -199,6 +205,25 @@ module Laximo
       ::Laximo::Respond::GetVehicleInfo.new(resp)
 
     end # get_vehicle_info
+
+    def exec_custom_operation(
+      catalog,
+      operation,
+      param,
+      locale:     'ru_RU'
+    )
+
+      resp = ::Laximo::Query.
+        new('GetVehicleInfo').
+        locale(locale).
+        catalog(catalog).
+        operation(operation).
+        param(param).
+        call(@request)
+
+      ::Laximo::Respond::ExecCustomOperation.new(resp)
+
+    end # exec_custom_operation
 
     def list_units(
       catalog,

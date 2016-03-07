@@ -60,6 +60,7 @@ Laximo.options.debug              false
   * [Laximo.oem.find_vehicle_by_wizard(catalog, wizard_id, ssd: nil, localized: false, locale: 'ru_RU')](http://laximo.net/index.php/Laximo_Web-services:OEM:FindVehicleByWizard)
   * [Laximo.oem.find_vehicle_by_wizard2(catalog, ssd, locale: 'ru_RU')](http://laximo.net/index.php/Laximo_Web-services:OEM:FindVehicleByWizard2)
   * [Laximo.oem.get_vehicle_info(catalog, vehicle_id, ssd, localized: false, locale: 'ru_RU')](http://laximo.net/index.php/Laximo_Web-services:OEM:GetVehicleInfo)
+  * [Laximo.oem.exec_custom_operation(catalog, operation, param, locale: 'ru_RU')](http://laximo.net/index.php/Laximo_Web-services:OEM:ExecCustomOperation)
   * [Laximo.oem.list_units(catalog, vehicle_id, ssd, category_id: nil, localized: false, locale: 'ru_RU')](http://laximo.net/index.php/Laximo_Web-services:OEM:ListUnits)
   * [Laximo.oem.list_categories(catalog, vehicle_id, ssd, category_id: nil, locale: 'ru_RU')](http://laximo.net/index.php/Laximo_Web-services:OEM:ListCategories)
   * [Laximo.oem.get_filter_by_unit(catalog, unit_id, vehicle_id, filter, ssd, locale: 'ru_RU')](http://laximo.net/index.php/Laximo_Web-services:OEM:GetFilterByUnit)

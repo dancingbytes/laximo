@@ -34,6 +34,14 @@ module Laximo
     ::Laximo::Oem.new
   end # oem
 
+  def deprecated!
+
+    puts "***"
+    puts "*** DEPRECATION WARNING! Method `#{caller[0][/`.*'/][1..-2]}` is deprecated and will not support in the future"
+    puts "***"
+
+  end # depreecated!
+
 end # Laximo
 
 require 'laximo/defaults'
