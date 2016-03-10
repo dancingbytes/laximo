@@ -16,7 +16,14 @@ module Laximo
       oem,
       brand:    nil,
       options:  [
-        :crosses
+
+        :crosses,
+        :properties,
+        :names,
+        :weights,
+        :prices,
+        :images
+
       ],
       locale:   'ru_RU'
     )
