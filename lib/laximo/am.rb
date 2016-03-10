@@ -3,6 +3,15 @@ module Laximo
 
   class Am
 
+    DEFAULT_OPTIONS = [
+      :crosses,
+      :properties,
+      :names,
+      :weights,
+      :prices,
+      :images
+    ].freeze
+
     def initialize
 
       @request = ::Laximo::Request.new(
@@ -15,16 +24,7 @@ module Laximo
     def find_oem(
       oem,
       brand:    nil,
-      options:  [
-
-        :crosses,
-        :properties,
-        :names,
-        :weights,
-        :prices,
-        :images
-
-      ],
+      options:  DEFAULT_OPTIONS,
       locale:   'ru_RU'
     )
 
@@ -57,13 +57,7 @@ module Laximo
 
     def find_detail(
       detail_id,
-      options:  [
-        :crosses,
-        :prices,
-        :names,
-        :properties,
-        :images
-      ],
+      options:  DEFAULT_OPTIONS,
       locale:   'ru_RU'
     )
 
