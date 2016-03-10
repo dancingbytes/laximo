@@ -15,7 +15,9 @@ module Laximo
     def find_oem(
       oem,
       brand:    nil,
-      options:  [],
+      options:  [
+        :crosses
+      ],
       locale:   'ru_RU'
     )
 
@@ -48,7 +50,13 @@ module Laximo
 
     def find_detail(
       detail_id,
-      options:  [],
+      options:  [
+        :crosses,
+        :prices,
+        :names,
+        :properties,
+        :images
+      ],
       locale:   'ru_RU'
     )
 
