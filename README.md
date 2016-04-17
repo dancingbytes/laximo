@@ -9,7 +9,7 @@ Ruby 1.9.3+
 
 ### Установка (Rails)
 1. Добавляем в Gemfile строку:`gem 'laximo'`
-2. В консоле `bundle install`
+2. В консоли `bundle install`
 3. Задаем параметры конфигурации в файле `config/initializers/laximo.rb`:
 ```ruby
 Laximo.options.use_ssl            true
