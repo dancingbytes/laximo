@@ -67,7 +67,10 @@ module Laximo
             h[key.to_sym] = snd.value
           }
 
-          h[:children] = nodes_to_hash(node.children, recursive: true) if recursive
+          if recursive
+            children      = nodes_to_hash(node.children, recursive: true)
+            h[:children]  = children unless children.empty?
+          end
           arr << h
 
         }
@@ -120,10 +123,11 @@ module Laximo
           doc.remove_namespaces!
 
           res = doc.xpath(RESPONSE_RESULT).children[0].to_s
-          str_to_xml_tags!(res)
 
           @error  = nil
-          @result = parsing_result(::Nokogiri::XML(res)) || []
+          @result = parsing_result(
+            ::Nokogiri::XML(unescape(res))
+          ) || []
 
         rescue => ex
 
@@ -143,15 +147,9 @@ module Laximo
 
       end # soap_errors
 
-      def str_to_xml_tags!(str)
-
-        str.gsub!('&apos;', "'")
-        str.gsub!('&quot;', '"')
-        str.gsub!('&gt;', '>')
-        str.gsub!('&lt;', '<')
-        str
-
-      end # str_to_xml_tags!
+      def unescape(str)
+        ::CGI::unescapeHTML str
+      end # unescape
 
     end # Base
 

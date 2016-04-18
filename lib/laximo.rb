@@ -1,6 +1,7 @@
 # encoding: utf-8
 require 'nokogiri'
 
+require 'cgi'
 require 'uri'
 require 'net/http'
 
