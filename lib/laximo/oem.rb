@@ -48,7 +48,7 @@ module Laximo
       vin:,
       catalog:    nil,
       ssd:        nil,
-      localized:  false,
+      localized:  true,
       locale:     'ru_RU'
     )
 
@@ -70,7 +70,7 @@ module Laximo
       frame:,
       frame_no:,
       ssd:        nil,
-      localized:  false,
+      localized:  true,
       locale:     'ru_RU'
     )
 
@@ -149,7 +149,7 @@ module Laximo
       catalog:,
       wizard_id:  nil,
       ssd:        nil,
-      localized:  false,
+      localized:  true,
       locale:     'ru_RU'
     )
 
@@ -189,7 +189,7 @@ module Laximo
       catalog:,
       vehicle_id:,
       ssd:        nil,
-      localized:  false,
+      localized:  true,
       locale:     'ru_RU'
     )
 
@@ -230,7 +230,7 @@ module Laximo
       vehicle_id:,
       ssd:          nil,
       category_id:  -1,
-      localized:    false,
+      localized:    true,
       locale:       'ru_RU'
     )
 
@@ -296,7 +296,7 @@ module Laximo
       catalog:,
       unit_id:,
       ssd:        nil,
-      localized:  false,
+      localized:  true,
       locale:     'ru_RU'
     )
 
@@ -317,7 +317,7 @@ module Laximo
       catalog:,
       unit_id:,
       ssd:        nil,
-      localized:  false,
+      localized:  true,
       locale:     'ru_RU'
     )
 
@@ -399,7 +399,7 @@ module Laximo
       quick_group_id:,
       all:,
       ssd:        nil,
-      localized:  false,
+      localized:  true,
       locale:     'ru_RU'
     )
 

@@ -50,26 +50,26 @@ Laximo.options.debug              false
   * `result` - возвращает массив хешей или пустой массив, если ничего не найдено, или если в процессе выполения произошла ошибка.
 
 ### Методы web-сервиса [Laximo.OEM](http://laximo.net/index.php/Laximo_Web-services:OEM:Laximo.OEM)
-  * [Laximo.oem.list_catalogs(ssd = nil, locale: 'ru_RU')](http://laximo.net/index.php/Laximo_Web-services:OEM:ListCatalogs)
-  * [Laximo.oem.get_catalog_info(catalog, ssd: nil, locale: 'ru_RU')](http://laximo.net/index.php/Laximo_Web-services:OEM:GetCatalogInfo)
-  * [Laximo.oem.find_vehicle_by_vin(vin, catalog: nil, ssd: nil, localized: false, locale: 'ru_RU')](http://laximo.net/index.php/Laximo_Web-services:OEM:FindVehicleByVIN)
-  * [Laximo.oem.find_vehicle_by_frame(catalog, frame, frame_no, ssd: nil, localized: false, locale: 'ru_RU')](http://laximo.net/index.php/Laximo_Web-services:OEM:FindVehicleByFrame)
-  * [Laximo.oem.get_wizard(catalog, wizard_id: nil, value_id: nil, locale: 'ru_RU')](http://laximo.net/index.php/Laximo_Web-services:OEM:GetWizard)
-  * [Laximo.oem.get_wizard2(catalog, ssd, locale: 'ru_RU')](http://laximo.net/index.php/Laximo_Web-services:OEM:GetWizard2)
-  * [Laximo.oem.get_wizard_next_step2(catalog, ssd, locale: 'ru_RU')](http://laximo.net/index.php/Laximo_Web-services:OEM:GetWizardNextStep2)
-  * [Laximo.oem.find_vehicle_by_wizard(catalog, wizard_id, ssd: nil, localized: false, locale: 'ru_RU')](http://laximo.net/index.php/Laximo_Web-services:OEM:FindVehicleByWizard)
-  * [Laximo.oem.find_vehicle_by_wizard2(catalog, ssd, locale: 'ru_RU')](http://laximo.net/index.php/Laximo_Web-services:OEM:FindVehicleByWizard2)
-  * [Laximo.oem.get_vehicle_info(catalog, vehicle_id, ssd, localized: false, locale: 'ru_RU')](http://laximo.net/index.php/Laximo_Web-services:OEM:GetVehicleInfo)
-  * [Laximo.oem.exec_custom_operation(catalog, operation, param, locale: 'ru_RU')](http://laximo.net/index.php/Laximo_Web-services:OEM:ExecCustomOperation)
-  * [Laximo.oem.list_units(catalog, vehicle_id, ssd, category_id: nil, localized: false, locale: 'ru_RU')](http://laximo.net/index.php/Laximo_Web-services:OEM:ListUnits)
-  * [Laximo.oem.list_categories(catalog, vehicle_id, ssd, category_id: nil, locale: 'ru_RU')](http://laximo.net/index.php/Laximo_Web-services:OEM:ListCategories)
-  * [Laximo.oem.get_filter_by_unit(catalog, unit_id, vehicle_id, filter, ssd, locale: 'ru_RU')](http://laximo.net/index.php/Laximo_Web-services:OEM:GetFilterByUnit)
-  * [Laximo.oem.get_unit_info(catalog, ssd, unit_id, localized: false, locale: 'ru_RU')](http://laximo.net/index.php/Laximo_Web-services:OEM:GetUnitInfo)
-  * [Laximo.oem.list_detail_by_unit(catalog, ssd, unit_id, localized: false, locale: 'ru_RU')](http://laximo.net/index.php/Laximo_Web-services:OEM:ListDetailByUnit)
-  * [Laximo.oem.list_image_map_by_unit(catalog, ssd, unit_id)](http://laximo.net/index.php/Laximo_Web-services:OEM:ListImageMapByUnit)
-  * [Laximo.oem.get_filter_by_detail(catalog, unit_id, detail_id, filter, ssd, locale: 'ru_RU')](http://laximo.net/index.php/Laximo_Web-services:OEM:GetFilterByDetail)
+  * [Laximo.oem.list_catalogs(ssd: nil, locale: 'ru_RU')](http://laximo.net/index.php/Laximo_Web-services:OEM:ListCatalogs)
+  * [Laximo.oem.get_catalog_info(catalog:, ssd: nil, locale: 'ru_RU')](http://laximo.net/index.php/Laximo_Web-services:OEM:GetCatalogInfo)
+  * [Laximo.oem.find_vehicle_by_vin(vin:, catalog: nil, ssd: nil, localized: true, locale: 'ru_RU')](http://laximo.net/index.php/Laximo_Web-services:OEM:FindVehicleByVIN)
+  * [Laximo.oem.find_vehicle_by_frame(catalog:, frame:, frame_no:, ssd: nil, localized: true, locale: 'ru_RU')](http://laximo.net/index.php/Laximo_Web-services:OEM:FindVehicleByFrame)
+  * [Laximo.oem.get_wizard(catalog:, wizard_id: nil, value_id: nil, locale: 'ru_RU')](http://laximo.net/index.php/Laximo_Web-services:OEM:GetWizard)
+  * [Laximo.oem.get_wizard2(catalog:, ssd: nil, locale: 'ru_RU')](http://laximo.net/index.php/Laximo_Web-services:OEM:GetWizard2)
+  * [Laximo.oem.get_wizard_next_step2(catalog:, ssd: nil, locale: 'ru_RU')](http://laximo.net/index.php/Laximo_Web-services:OEM:GetWizardNextStep2)
+  * [Laximo.oem.find_vehicle_by_wizard(catalog:, wizard_id:, ssd: nil, localized: true, locale: 'ru_RU')](http://laximo.net/index.php/Laximo_Web-services:OEM:FindVehicleByWizard)
+  * [Laximo.oem.find_vehicle_by_wizard2(catalog:, ssd: nil, locale: 'ru_RU')](http://laximo.net/index.php/Laximo_Web-services:OEM:FindVehicleByWizard2)
+  * [Laximo.oem.get_vehicle_info(catalog:, vehicle_id:, ssd: nil, localized: true, locale: 'ru_RU')](http://laximo.net/index.php/Laximo_Web-services:OEM:GetVehicleInfo)
+  * [Laximo.oem.exec_custom_operation(catalog:, operation:, param:, locale: 'ru_RU')](http://laximo.net/index.php/Laximo_Web-services:OEM:ExecCustomOperation)
+  * [Laximo.oem.list_units(catalog:, vehicle_id:, ssd: nil, category_id: nil, localized: true, locale: 'ru_RU')](http://laximo.net/index.php/Laximo_Web-services:OEM:ListUnits)
+  * [Laximo.oem.list_categories(catalog:, vehicle_id:, ssd: nil, category_id: nil, locale: 'ru_RU')](http://laximo.net/index.php/Laximo_Web-services:OEM:ListCategories)
+  * [Laximo.oem.get_filter_by_unit(catalog:, unit_id:, vehicle_id:, filter:, ssd: nil, locale: 'ru_RU')](http://laximo.net/index.php/Laximo_Web-services:OEM:GetFilterByUnit)
+  * [Laximo.oem.get_unit_info(catalog:, unit_id:, ssd: nil, localized: true, locale: 'ru_RU')](http://laximo.net/index.php/Laximo_Web-services:OEM:GetUnitInfo)
+  * [Laximo.oem.list_detail_by_unit(catalog:, unit_id:, ssd: nil, localized: true, locale: 'ru_RU')](http://laximo.net/index.php/Laximo_Web-services:OEM:ListDetailByUnit)
+  * [Laximo.oem.list_image_map_by_unit(catalog:, unit_id:, ssd: nil)](http://laximo.net/index.php/Laximo_Web-services:OEM:ListImageMapByUnit)
+  * [Laximo.oem.get_filter_by_detail(catalog:, unit_id:, detail_id:, filter:, ssd: nil, locale: 'ru_RU')](http://laximo.net/index.php/Laximo_Web-services:OEM:GetFilterByDetail)
   * [Laximo.oem.list_quick_group(catalog, vehicle_id, ssd: nil, locale: 'ru_RU')](http://laximo.net/index.php/Laximo_Web-services:OEM:ListQuickGroup)
-  * [Laximo.oem.list_quick_detail(catalog, vehicle_id, quick_group_id, all, ssd: nil, localized: false, locale: 'ru_RU')](http://laximo.net/index.php/Laximo_Web-services:OEM:ListQuickDetail)
+  * [Laximo.oem.list_quick_detail(catalog:, vehicle_id:, quick_group_id:, all:, ssd: nil, localized: true, locale: 'ru_RU')](http://laximo.net/index.php/Laximo_Web-services:OEM:ListQuickDetail)
 
 Данные методы возвращают объект, у которого заданы методы:
 
@@ -113,4 +113,4 @@ res.result   # []
 
 Автор: [Tyralion](mailto:piliaiev@gmail.com)
 
-Copyright (c) 2015 DansingBytes.ru, под лицензией BSD
+Copyright (c) 2015-2016 DansingBytes.ru, под лицензией BSD
