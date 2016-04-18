@@ -13,7 +13,7 @@ module Laximo
     end # initialize
 
     def list_catalogs(
-      ssd = nil,
+      ssd: nil,
       locale: 'ru_RU'
     )
 
@@ -28,7 +28,7 @@ module Laximo
     end # list_catalogs
 
     def get_catalog_info(
-      catalog,
+      catalog:,
       ssd:      nil,
       locale:   'ru_RU'
     )
@@ -45,7 +45,7 @@ module Laximo
     end # get_catalog_info
 
     def find_vehicle_by_vin(
-      vin,
+      vin:,
       catalog:    nil,
       ssd:        nil,
       localized:  false,
@@ -66,9 +66,9 @@ module Laximo
     end # find_vehicle_by_vin
 
     def find_vehicle_by_frame(
-      catalog,
-      frame,
-      frame_no,
+      catalog:,
+      frame:,
+      frame_no:,
       ssd:        nil,
       localized:  false,
       locale:     'ru_RU'
@@ -90,7 +90,7 @@ module Laximo
 
     # TODO: Устаревший метод
     def get_wizard(
-      catalog,
+      catalog:,
       wizard_id:  nil,
       value_id:   nil,
       locale:     'ru_RU'
@@ -111,8 +111,8 @@ module Laximo
     end # get_wizard
 
     def get_wizard2(
-      catalog,
-      ssd,
+      catalog:,
+      ssd:    nil,
       locale: 'ru_RU'
     )
 
@@ -128,8 +128,8 @@ module Laximo
     end # get_wizard2
 
     def get_wizard_next_step2(
-      catalog,
-      ssd,
+      catalog:,
+      ssd:    nil,
       locale: 'ru_RU'
     )
 
@@ -146,8 +146,8 @@ module Laximo
 
     # TODO: Устаревший метод
     def find_vehicle_by_wizard(
-      catalog,
-      wizard_id,
+      catalog:,
+      wizard_id:  nil,
       ssd:        nil,
       localized:  false,
       locale:     'ru_RU'
@@ -169,8 +169,8 @@ module Laximo
     end # find_vehicle_by_wizard
 
     def find_vehicle_by_wizard2(
-      catalog,
-      ssd,
+      catalog:,
+      ssd:    nil,
       locale: 'ru_RU'
     )
 
@@ -186,9 +186,9 @@ module Laximo
     end # find_vehicle_by_wizard2
 
     def get_vehicle_info(
-      catalog,
-      vehicle_id,
-      ssd,
+      catalog:,
+      vehicle_id:,
+      ssd:        nil,
       localized:  false,
       locale:     'ru_RU'
     )
@@ -207,9 +207,9 @@ module Laximo
     end # get_vehicle_info
 
     def exec_custom_operation(
-      catalog,
-      operation,
-      param,
+      catalog:,
+      operation:,
+      param:,
       locale:     'ru_RU'
     )
 
@@ -226,9 +226,9 @@ module Laximo
     end # exec_custom_operation
 
     def list_units(
-      catalog,
-      vehicle_id,
-      ssd,
+      catalog:,
+      vehicle_id:,
+      ssd:          nil,
       category_id:  -1,
       localized:    false,
       locale:       'ru_RU'
@@ -249,9 +249,9 @@ module Laximo
     end # list_units
 
     def list_categories(
-      catalog,
-      vehicle_id,
-      ssd,
+      catalog:,
+      vehicle_id:,
+      ssd:          nil,
       category_id:  -1,
       locale:       'ru_RU'
     )
@@ -270,11 +270,11 @@ module Laximo
     end # list_categories
 
     def get_filter_by_unit(
-      catalog,
-      unit_id,
-      vehicle_id,
-      filter,
-      ssd,
+      catalog:,
+      unit_id:,
+      vehicle_id:,
+      filter:,
+      ssd:    nil,
       locale: 'ru_RU'
     )
 
@@ -293,9 +293,9 @@ module Laximo
     end # get_filter_by_unit
 
     def get_unit_info(
-      catalog,
-      ssd,
-      unit_id,
+      catalog:,
+      unit_id:,
+      ssd:        nil,
       localized:  false,
       locale:     'ru_RU'
     )
@@ -314,9 +314,9 @@ module Laximo
     end # get_unit_info
 
     def list_detail_by_unit(
-      catalog,
-      ssd,
-      unit_id,
+      catalog:,
+      unit_id:,
+      ssd:        nil,
       localized:  false,
       locale:     'ru_RU'
     )
@@ -335,9 +335,9 @@ module Laximo
     end # list_detail_by_unit
 
     def list_image_map_by_unit(
-      catalog,
-      ssd,
-      unit_id
+      catalog:,
+      unit_id:,
+      ssd:      nil
     )
 
       resp = ::Laximo::Query.
@@ -352,12 +352,12 @@ module Laximo
     end # list_image_map_by_unit
 
     def get_filter_by_detail(
-      catalog,
-      unit_id,
-      detail_id,
-      filter,
-      ssd,
-      locale: 'ru_RU'
+      catalog:,
+      unit_id:,
+      detail_id:,
+      filter:,
+      ssd:      nil,
+      locale:   'ru_RU'
     )
 
       resp = ::Laximo::Query.
@@ -375,8 +375,8 @@ module Laximo
     end # get_filter_by_detail
 
     def list_quick_group(
-      catalog,
-      vehicle_id,
+      catalog:,
+      vehicle_id:,
       ssd:    nil,
       locale: 'ru_RU'
     )
@@ -394,10 +394,10 @@ module Laximo
     end # list_quick_group
 
     def list_quick_detail(
-      catalog,
-      vehicle_id,
-      quick_group_id,
-      all,
+      catalog:,
+      vehicle_id:,
+      quick_group_id:,
+      all:,
       ssd:        nil,
       localized:  false,
       locale:     'ru_RU'
