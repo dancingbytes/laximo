@@ -377,8 +377,8 @@ module Laximo
     def list_quick_group(
       catalog:,
       vehicle_id:,
-      ssd:    nil,
-      locale: 'ru_RU'
+      ssd:        nil,
+      locale:     'ru_RU'
     )
 
       resp = ::Laximo::Query.
@@ -397,10 +397,10 @@ module Laximo
       catalog:,
       vehicle_id:,
       quick_group_id:,
-      all:,
-      ssd:        nil,
-      localized:  true,
-      locale:     'ru_RU'
+      all:            1,
+      ssd:            nil,
+      localized:      true,
+      locale:         'ru_RU'
     )
 
       resp = ::Laximo::Query.
