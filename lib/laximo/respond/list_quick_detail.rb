@@ -15,8 +15,13 @@ module Laximo
 
               arr1 << node_to_hash(n2) { |h2, n3|
 
-                h1[:attributes] = nodes_to_hash(n3.xpath('./attribute'))
-                h1[:details]    = nodes_to_hash(n3.xpath('./Detail/attribute'))
+                h2[:details] = n3.xpath('./Detail').inject([]) { |arr2, n4|
+
+                  arr2 << node_to_hash(n4) { |h3, n5|
+                    h3[:attributes] = nodes_to_hash(n5.xpath('./attribute'))
+                  }
+
+                }
 
               }
 

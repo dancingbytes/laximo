@@ -408,7 +408,7 @@ module Laximo
         locale(locale).
         catalog(catalog).
         vehicle_id(vehicle_id).
-        quick_group_id(quick_group_id),
+        quick_group_id(quick_group_id).
         all(all).
         ssd(ssd).
         localized(localized).
