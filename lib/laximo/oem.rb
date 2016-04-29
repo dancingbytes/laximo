@@ -66,9 +66,9 @@ module Laximo
     end # find_vehicle_by_vin
 
     def find_vehicle_by_frame(
-      catalog:,
       frame:,
       frame_no:,
+      catalog:    nil,
       ssd:        nil,
       localized:  true,
       locale:     'ru_RU'

@@ -53,7 +53,7 @@ Laximo.options.debug              false
   * [Laximo.oem.list_catalogs(ssd: nil, locale: 'ru_RU')](http://laximo.net/index.php/Laximo_Web-services:OEM:ListCatalogs)
   * [Laximo.oem.get_catalog_info(catalog:, ssd: nil, locale: 'ru_RU')](http://laximo.net/index.php/Laximo_Web-services:OEM:GetCatalogInfo)
   * [Laximo.oem.find_vehicle_by_vin(vin:, catalog: nil, ssd: nil, localized: true, locale: 'ru_RU')](http://laximo.net/index.php/Laximo_Web-services:OEM:FindVehicleByVIN)
-  * [Laximo.oem.find_vehicle_by_frame(catalog:, frame:, frame_no:, ssd: nil, localized: true, locale: 'ru_RU')](http://laximo.net/index.php/Laximo_Web-services:OEM:FindVehicleByFrame)
+  * [Laximo.oem.find_vehicle_by_frame(frame:, frame_no:, catalog: nil, ssd: nil, localized: true, locale: 'ru_RU')](http://laximo.net/index.php/Laximo_Web-services:OEM:FindVehicleByFrame)
   * [Laximo.oem.get_wizard(catalog:, wizard_id: nil, value_id: nil, locale: 'ru_RU')](http://laximo.net/index.php/Laximo_Web-services:OEM:GetWizard)
   * [Laximo.oem.get_wizard2(catalog:, ssd: nil, locale: 'ru_RU')](http://laximo.net/index.php/Laximo_Web-services:OEM:GetWizard2)
   * [Laximo.oem.get_wizard_next_step2(catalog:, ssd: nil, locale: 'ru_RU')](http://laximo.net/index.php/Laximo_Web-services:OEM:GetWizardNextStep2)
@@ -67,7 +67,7 @@ Laximo.options.debug              false
   * [Laximo.oem.get_unit_info(catalog:, unit_id:, ssd: nil, localized: true, locale: 'ru_RU')](http://laximo.net/index.php/Laximo_Web-services:OEM:GetUnitInfo)
   * [Laximo.oem.list_detail_by_unit(catalog:, unit_id:, ssd: nil, localized: true, locale: 'ru_RU')](http://laximo.net/index.php/Laximo_Web-services:OEM:ListDetailByUnit)
   * [Laximo.oem.list_image_map_by_unit(catalog:, unit_id:, ssd: nil)](http://laximo.net/index.php/Laximo_Web-services:OEM:ListImageMapByUnit)
-  * [Laximo.oem.get_filter_by_detail(catalog:, unit_id:, detail_id:, filter:, ssd: nil, locale: 'ru_RU')](http://laximo.net/index.php/Laximo_Web-services:OEM:GetFilterByDetail)
+  * [Laximo.oem.get_filter_by_detail(catalog:, unit_id: , detail_id: , filter: , ssd: nil, locale: 'ru_RU')](http://laximo.net/index.php/Laximo_Web-services:OEM:GetFilterByDetail)
   * [Laximo.oem.list_quick_group(catalog, vehicle_id, ssd: nil, locale: 'ru_RU')](http://laximo.net/index.php/Laximo_Web-services:OEM:ListQuickGroup)
   * [Laximo.oem.list_quick_detail(catalog:, vehicle_id:, quick_group_id:, all:, ssd: nil, localized: true, locale: 'ru_RU')](http://laximo.net/index.php/Laximo_Web-services:OEM:ListQuickDetail)
 
@@ -100,7 +100,7 @@ res.result   # [{:detailid=>"31454425", :formattedoem=>"078100105NX", :manufactu
   * `Laximo::SoapError` - общая ошибка протокола SOAP
 
 ```ruby
-res = Laximo.oem.get_filter_by_detail('AP1211', '', '', '', '')
+res = Laximo.oem.get_filter_by_detail(catalog: 'AP1211', unit_id: '', detail_id: '', filter: '')
 res.success? # false
 res.error?   # true
 res.error    # <Laximo::SoapInvalidParameterError: UnitId>
