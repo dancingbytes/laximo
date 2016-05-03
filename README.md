@@ -126,5 +126,6 @@ res.result   # []
 ### Лицензия
 
 Автор: [Tyralion](mailto:piliaiev@gmail.com)
+[Список контрибьюторов](https://github.com/dancingbytes/laximo/graphs/contributors)
 
 Copyright (c) 2015-2016 DansingBytes.ru, под лицензией BSD
