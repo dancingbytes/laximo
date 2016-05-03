@@ -6,6 +6,7 @@ module Laximo
     class Base
 
       RESPONSE_RESULT     = '//QueryDataResponse/return'.freeze
+      RESPONSE_LOGIN_RESULT = '//QueryDataLoginResponse/return'.freeze
       RESPONSE_SOAP_ERROR = '//Fault/faultstring'.freeze
 
       def initialize(request)
@@ -122,11 +123,15 @@ module Laximo
           doc = ::Nokogiri::XML(http.body)
           doc.remove_namespaces!
 
-          res = doc.xpath(RESPONSE_RESULT).children[0].to_s
+          if ::Laximo.options.use_login
+            res = doc.xpath(RESPONSE_LOGIN_RESULT).children[0].to_s
+          else
+            res = doc.xpath(RESPONSE_RESULT).children[0].to_s
+          end
 
           @error  = nil
           @result = parsing_result(
-            ::Nokogiri::XML(unescape(res))
+              ::Nokogiri::XML(unescape(res))
           ) || []
 
         rescue => ex

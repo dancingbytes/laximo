@@ -20,12 +20,26 @@ Laximo.options.ssl_verify         false
 Laximo.options.timeout            10
 Laximo.options.debug              false
 ```
+или для авторизации по подписке
+```ruby
+Laximo.options.use_ssl            true
+Laximo.options.use_login          true
+Laximo.options.login              'mylogin'    # имейте в виду, что такие параметры
+Laximo.options.password           'mypassword' # должны быть вынесены в переменные окружения
+Laximo.options.ssl_verify         false
+
+Laximo.options.timeout            10
+Laximo.options.debug              false
+```
 
 ### Конфигурация
   * `Laximo.options.ssl_key "путь_к_файлу"` — путь к открытому ключу ssl-сертификата
   * `Laximo.options.ssl_cert "путь_к_файлу"` — путь к закрытому ключу ssl-сертификата
   * `Laximo.options.ssl_cert true/false` — проверять или нет валидность сертификата. **В случае самоподписанного сертификата, проверку на валидность необходимо отключить**
   * `Laximo.options.use_ssl true/false` - использовать ssl-соединение или нет
+  * `Laximo.options.use_login true/false` - использовать авторизацию по подписке или нет
+  * `Laximo.options.login` - логин для авторизации по подписке
+  * `Laximo.options.password` - пароль для авторизации по подписке
   * `Laximo.options.timeout 30` - таймаут соединения в секундах (по-умочланию, 10)
   * `Laximo.options.user_agent "Ваш_юзер_агент"` - задание произвольного юзер-агента (по-умолчанию, "LaximoRuby [версия_библиотеки]")
   * `Laximo.options.debug true/false` - включение/отключение режима отладки (по-умолчанию, выключено)
@@ -107,7 +121,7 @@ res.error    # <Laximo::SoapInvalidParameterError: UnitId>
 res.result   # []
 ```
 
-Помимо переисленного списка ошибок, в ответе могут быть возвращены стандартные ошибки библиотеки `Net::HTTP` и интерпретатора Ruby.
+Помимо перечисленного списка ошибок, в ответе могут быть возвращены стандартные ошибки библиотеки `Net::HTTP` и интерпретатора Ruby.
 
 ### Лицензия
 

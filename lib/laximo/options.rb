@@ -5,6 +5,27 @@ module Laximo
 
     extend self
 
+    def use_login(str = nil)
+
+      return @use_login if str.nil?
+      @use_login = str === true
+
+    end # use login
+
+    def login(str = nil)
+
+      return @login if str.nil?
+      @login = str
+
+    end # login
+
+    def password(str = nil)
+
+      return @password if str.nil?
+      @password = str
+
+    end # password
+
     def ssl_key(str = nil)
 
       return @ssl_key if str.nil?
