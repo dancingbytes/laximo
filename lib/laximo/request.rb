@@ -1,4 +1,4 @@
-# encoding: utf-8
+
 module Laximo
 
   REQUEST_MSG = %q(<?xml version="1.0" encoding="UTF-8"?>
@@ -9,6 +9,19 @@ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:SOAP-ENC="http://sch
     <ns5692:QueryData xmlns:ns5692="%{act}">
       <request xsi:type="xsd:string">%{msg}</request>
     </ns5692:QueryData>
+  </SOAP-ENV:Body>
+</SOAP-ENV:Envelope>).freeze
+
+  REQUEST_LOGIN_MSG = %q(<?xml version="1.0" encoding="UTF-8"?>
+<SOAP-ENV:Envelope SOAP-ENV:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/">
+  <SOAP-ENV:Body>
+    <ns5692:QueryDataLogin xmlns:ns5692="%{act}">
+      <request xsi:type="xsd:string">%{msg}</request>
+      <login xsi:type="xsd:string">%{login}</login>
+      <hmac xsi:type="xsd:string">%{hash}</hmac>
+    </ns5692:QueryDataLogin>
   </SOAP-ENV:Body>
 </SOAP-ENV:Envelope>).freeze
 
@@ -30,13 +43,22 @@ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:SOAP-ENC="http://sch
 
     def call(msg)
 
-      @request.body = REQUEST_MSG % {
-        msg: msg,
-        act: @soap_action
-      }
+      if ::Laximo.options.use_login
+        @request.body = REQUEST_LOGIN_MSG % {
+          msg:   msg,
+          act:   @soap_action,
+          login: ::Laximo.options.login,
+          hash:  hash(msg, ::Laximo.options.password)
+        }
+      else
+        @request.body = REQUEST_MSG % {
+            msg: msg,
+            act: @soap_action
+        }
+      end
 
       begin
-        @http.request(@request)
+        @http.request @request
       rescue => ex
         ex
       end
@@ -50,9 +72,12 @@ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:SOAP-ENC="http://sch
       @http.set_debug_output($stdout) if ::Laximo.options.debug?
 
       @http.use_ssl      = ::Laximo.options.use_ssl
-      @http.key          = ::Laximo.options.ssl_key
-      @http.cert         = ::Laximo.options.ssl_cert
       @http.verify_mode  = ::Laximo.options.ssl_verify
+
+      unless ::Laximo.options.use_login
+        @http.key          = ::Laximo.options.ssl_key
+        @http.cert         = ::Laximo.options.ssl_cert
+      end
 
       @http.open_timeout = ::Laximo.options.timeout
       @http.read_timeout = ::Laximo.options.timeout
@@ -72,6 +97,12 @@ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:SOAP-ENC="http://sch
       self
 
     end # set_request_params
+
+    def hash(command, password)
+
+      Digest::MD5::hexdigest "#{command}#{password}"
+
+    end # hash
 
   end # Request
 
