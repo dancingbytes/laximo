@@ -13,7 +13,7 @@ module Laximo
     def locale(v = nil)
 
       @str    = nil
-      @locale = v.blank? ? '' : ":Locale=#{escape(v)}"
+      @query[:Locale] = escape(v)
       self
 
     end # locale
@@ -196,13 +196,14 @@ module Laximo
 
       return @str unless @str.nil?
 
-      @str = "#{@func_name}#{@locale}"
+      @str = ''
 
       @query.each { |key, value|
         @str << "|#{key}=#{value}"
       }
 
-      @str
+      @str[0] = ''
+      @str = "#{@func_name}:#{@str}"
 
     end # to_s
 
