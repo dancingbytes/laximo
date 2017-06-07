@@ -36,6 +36,13 @@ module Laximo
         @result
       end # result
 
+      def result!
+
+        throw error if failure?
+        result
+
+      end # result!
+
       def parsing_result(str)
         ::NotImplementedError.new("Метод `parsing_result` не реализован в классе #{self.class.name}")
       end # parsing_result
