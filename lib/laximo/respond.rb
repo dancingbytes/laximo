@@ -38,7 +38,7 @@ module Laximo
 
       def result!
 
-        throw error if failure?
+        raise error if failure?
         result
 
       end # result!
