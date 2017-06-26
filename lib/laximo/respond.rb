@@ -101,7 +101,7 @@ module Laximo
         @result = []
 
         if http.is_a?(::Net::HTTPBadRequest)
-          @error = ::Laximo::SslCertificateError.new('SSL cetificate not found or invalidate')
+          @error = ::Laximo::SslCertificateError.new('SSL cetificate doesn`t found or invalidate')
         else
 
           begin
@@ -115,7 +115,7 @@ module Laximo
               @error = soap_errors(res.text)
             end
 
-          rescue => ex
+          rescue ::Exception => ex
             @error = ex
           end
 
@@ -138,10 +138,10 @@ module Laximo
 
           @error  = nil
           @result = parsing_result(
-              ::Nokogiri::XML(unescape(res))
+            ::Nokogiri::XML(unescape(res))
           ) || []
 
-        rescue => ex
+        rescue ::Exception => ex
 
           @result = []
           @error  = ex

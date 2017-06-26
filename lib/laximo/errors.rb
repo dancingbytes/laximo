@@ -22,12 +22,13 @@ module Laximo
   class SoapGroupIsNotSearchableError < ::Laximo::Error; end
 
   ERRORS = {
-    'E_CATALOGNOTEXISTS'  => SoapCatalogNotExistsError,
-    'E_INVALIDPARAMETER'  => SoapInvalidParameterError,
-    'E_INVALIDREQUEST'    => SoapInvalidRequestError,
-    'E_UNKNOWNCOMMAND'    => SoapUnknownCommandError,
-    'E_ACCESSDENIED'      => SoapAccessDeniedError,
-    'E_NOTSUPPORTED'      => SoapNotSupportedError,
+
+    'E_CATALOGNOTEXISTS'        => SoapCatalogNotExistsError,
+    'E_INVALIDPARAMETER'        => SoapInvalidParameterError,
+    'E_INVALIDREQUEST'          => SoapInvalidRequestError,
+    'E_UNKNOWNCOMMAND'          => SoapUnknownCommandError,
+    'E_ACCESSDENIED'            => SoapAccessDeniedError,
+    'E_NOTSUPPORTED'            => SoapNotSupportedError,
     'E_GROUP_IS_NOT_SEARCHABLE' => SoapGroupIsNotSearchableError
 
   }.freeze
