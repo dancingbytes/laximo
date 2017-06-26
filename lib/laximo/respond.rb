@@ -100,9 +100,7 @@ module Laximo
 
         @result = []
 
-        if http.is_a?(::Net::HTTPBadRequest)
-          @error = ::Laximo::SslCertificateError.new('SSL cetificate doesn`t found or invalidate')
-        else
+        if http.respond_to?(:body)
 
           begin
 
@@ -119,6 +117,10 @@ module Laximo
             @error = ex
           end
 
+        elsif http.is_a?(::Net::HTTPBadRequest)
+          @error = ::Laximo::SslCertificateError.new('SSL cetificate doesn`t found or invalidate')
+        else
+          @error = http
         end
 
       end # prepare_error
