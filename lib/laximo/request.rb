@@ -32,9 +32,9 @@ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:SOAP-ENC="http://sch
       @soap_endpoint  = soap_endpoint
       @soap_action    = soap_action
 
-      uri      = URI(soap_endpoint)
-      @http    = ::Net::HTTP.new(uri.host, uri.port)
-      @request = ::Net::HTTP::Post.new(uri.request_uri)
+      @uri     = URI(soap_endpoint)
+      @http    = ::Net::HTTP.new(@uri.host, @uri.port)
+      @request = ::Net::HTTP::Post.new(@uri.request_uri)
 
       set_request_params
       set_http_params
@@ -43,17 +43,17 @@ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:SOAP-ENC="http://sch
 
     def call(msg)
 
-      if ::Laximo.options.use_login
+      if ::Laximo.options.use_ssl
+        @request.body = REQUEST_MSG % {
+          msg: msg,
+          act: @soap_action
+        }
+      else
         @request.body = REQUEST_LOGIN_MSG % {
           msg:   msg,
           act:   @soap_action,
           login: ::Laximo.options.login,
           hash:  hash(msg, ::Laximo.options.password)
-        }
-      else
-        @request.body = REQUEST_MSG % {
-            msg: msg,
-            act: @soap_action
         }
       end
 
@@ -71,12 +71,12 @@ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:SOAP-ENC="http://sch
 
       @http.set_debug_output($stdout) if ::Laximo.options.debug?
 
-      @http.use_ssl      = ::Laximo.options.use_ssl
-      @http.verify_mode  = ::Laximo.options.ssl_verify
+      @http.use_ssl      = ssl?
+      @http.verify_mode  = ::OpenSSL::SSL::VERIFY_NONE
 
-      unless ::Laximo.options.use_login
-        @http.key          = ::Laximo.options.ssl_key
-        @http.cert         = ::Laximo.options.ssl_cert
+      if ::Laximo.options.use_ssl
+        @http.key        = ::Laximo.options.ssl_key
+        @http.cert       = ::Laximo.options.ssl_cert
       end
 
       @http.open_timeout = ::Laximo.options.timeout
@@ -99,10 +99,12 @@ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:SOAP-ENC="http://sch
     end # set_request_params
 
     def hash(command, password)
-
-      Digest::MD5::hexdigest "#{command}#{password}"
-
+      ::Digest::MD5::hexdigest "#{command}#{password}"
     end # hash
+
+    def ssl?
+      @uri.scheme == 'https'.freeze
+    end
 
   end # Request
 

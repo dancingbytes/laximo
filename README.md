@@ -12,21 +12,18 @@ Ruby 1.9.3+
 2. В консоли `bundle install`
 3. Задаем параметры конфигурации в файле `config/initializers/laximo.rb`:
 ```ruby
-Laximo.options.use_ssl            true
-Laximo.options.ssl_key            ::File.join(Rails.root, 'db', 'ssl', 'client.key')
-Laximo.options.ssl_cert           ::File.join(Rails.root, 'db', 'ssl', 'client.pem')
-Laximo.options.ssl_verify         false
+Laximo.options.login              'mylogin'    # имейте в виду, что такие параметры
+Laximo.options.password           'mypassword' # должны быть вынесены в переменные окружения
 
 Laximo.options.timeout            10
 Laximo.options.debug              false
 ```
-или для авторизации по подписке
+
+Авторизация по ssl считается устаревшей и в ближайшее время будет удалена:
 ```ruby
 Laximo.options.use_ssl            true
-Laximo.options.use_login          true
-Laximo.options.login              'mylogin'    # имейте в виду, что такие параметры
-Laximo.options.password           'mypassword' # должны быть вынесены в переменные окружения
-Laximo.options.ssl_verify         false
+Laximo.options.ssl_key            ::File.join(Rails.root, 'db', 'ssl', 'client.key')
+Laximo.options.ssl_cert           ::File.join(Rails.root, 'db', 'ssl', 'client.pem')
 
 Laximo.options.timeout            10
 Laximo.options.debug              false
@@ -128,4 +125,4 @@ res.result   # []
 Автор: [Tyralion](mailto:piliaiev@gmail.com)
 [Список контрибьюторов](https://github.com/dancingbytes/laximo/graphs/contributors)
 
-Copyright (c) 2015-2016 DansingBytes.ru, под лицензией BSD
+Copyright (c) 2015-2018 DansingBytes.ru, под лицензией BSD

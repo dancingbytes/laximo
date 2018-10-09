@@ -38,7 +38,7 @@ module Laximo
 
       def result!
 
-        raise error if failure?
+        raise StandardError, error.inspect if failure?
         result
 
       end # result!
@@ -132,11 +132,8 @@ module Laximo
           doc = ::Nokogiri::XML(http.body)
           doc.remove_namespaces!
 
-          if ::Laximo.options.use_login
-            res = doc.xpath(RESPONSE_LOGIN_RESULT).children[0].to_s
-          else
-            res = doc.xpath(RESPONSE_RESULT).children[0].to_s
-          end
+          res = doc.xpath(RESPONSE_LOGIN_RESULT).children[0].to_s
+          res = doc.xpath(RESPONSE_RESULT).children[0].to_s if res.blank?
 
           @error  = nil
           @result = parsing_result(

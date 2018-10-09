@@ -4,6 +4,7 @@ require 'nokogiri'
 require 'cgi'
 require 'uri'
 require 'net/http'
+require 'net/https'
 
 require 'laximo/version'
 require 'laximo/options'

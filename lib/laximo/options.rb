@@ -7,8 +7,10 @@ module Laximo
 
     def use_login(str = nil)
 
-      return @use_login if str.nil?
-      @use_login = str === true
+      ::Laximo.deprecated!
+
+      return (@use_login === true) if str.nil?
+      @use_login = str
 
     end # use login
 
@@ -28,6 +30,8 @@ module Laximo
 
     def ssl_key(str = nil)
 
+      ::Laximo.deprecated!
+
       return @ssl_key if str.nil?
       raise ::LoadError.new("File #{str} is not found") unless File.exists?(str)
 
@@ -36,6 +40,8 @@ module Laximo
     end # ssl_key
 
     def ssl_cert(str = nil)
+
+      ::Laximo.deprecated!
 
       return @ssl_cert if str.nil?
       raise ::LoadError.new("File #{str} is not found") unless File.exists?(str)
@@ -46,6 +52,8 @@ module Laximo
 
     def ssl_verify(str = nil)
 
+      ::Laximo.deprecated!
+
       return @ssl_verify if str.nil?
       @ssl_verify = (str === true ? ::OpenSSL::SSL::VERIFY_PEER : ::OpenSSL::SSL::VERIFY_NONE)
 
@@ -53,8 +61,8 @@ module Laximo
 
     def use_ssl(str = nil)
 
-      return @use_ssl if str.nil?
-      @use_ssl = str === true
+      return (@use_ssl === true) if str.nil?
+      @use_ssl = str
 
     end # use_ssl
 
