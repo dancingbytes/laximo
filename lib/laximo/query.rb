@@ -8,7 +8,7 @@ module Laximo
       @func_name  = func_name
       @query      = {}
 
-    end # initialize
+    end
 
     def locale(v = nil)
 
@@ -16,7 +16,7 @@ module Laximo
       @query[:Locale] = escape(v)
       self
 
-    end # locale
+    end
 
     def ssd(v = nil)
 
@@ -24,7 +24,7 @@ module Laximo
       @query[:ssd]  = escape(v)
       self
 
-    end # ssd
+    end
 
     def catalog(v = nil)
 
@@ -32,7 +32,7 @@ module Laximo
       @query[:Catalog]  = escape(v)
       self
 
-    end # catalog
+    end
 
     def operation(v = nil)
 
@@ -40,7 +40,7 @@ module Laximo
       @query[:operation]  = escape(v)
       self
 
-    end # operation
+    end
 
     def param(v = nil)
 
@@ -50,7 +50,7 @@ module Laximo
       end
       self
 
-    end # param
+    end
 
     def localized(v = false)
 
@@ -58,7 +58,7 @@ module Laximo
       @query[:Localized]  = (v === true)
       self
 
-    end # localized
+    end
 
     def wizard_id(v = nil)
 
@@ -66,7 +66,7 @@ module Laximo
       @query[:WizardId] = escape(v)
       self
 
-    end # wizard_id
+    end
 
     def value_id(v = nil)
 
@@ -74,7 +74,7 @@ module Laximo
       @query[:ValueId]  = escape(v)
       self
 
-    end # value_id
+    end
 
     def options(args = [])
 
@@ -82,7 +82,7 @@ module Laximo
       @query[:Options]  = args.empty? ? nil : args.join(',')
       self
 
-    end # options
+    end
 
     def brand(v = nil)
 
@@ -90,7 +90,7 @@ module Laximo
       @query[:Brand]  = escape(v)
       self
 
-    end # brand
+    end
 
     def oem(v = nil)
 
@@ -98,7 +98,7 @@ module Laximo
       @query[:OEM]  = escape(v)
       self
 
-    end # oem
+    end
 
     def detail_id(v = nil)
 
@@ -106,7 +106,7 @@ module Laximo
       @query[:DetailId] = escape(v)
       self
 
-    end # detail_id
+    end
 
     def manufacturer_id(v = nil)
 
@@ -114,7 +114,7 @@ module Laximo
       @query[:ManufacturerId] = escape(v)
       self
 
-    end # manufacturer_id
+    end
 
     def vin(v = nil)
 
@@ -122,7 +122,7 @@ module Laximo
       @query[:VIN]  = escape(v)
       self
 
-    end # vin
+    end
 
     def frame(v = nil)
 
@@ -130,7 +130,7 @@ module Laximo
       @query[:Frame]  = escape(v)
       self
 
-    end # frame
+    end
 
     def frame_no(v = nil)
 
@@ -138,7 +138,7 @@ module Laximo
       @query[:FrameNo]  = escape(v)
       self
 
-    end # frame_no
+    end
 
     def vehicle_id(v = nil)
 
@@ -146,7 +146,7 @@ module Laximo
       @query[:VehicleId]  = escape(v)
       self
 
-    end # vehicle_id
+    end
 
     def category_id(v = nil)
 
@@ -154,7 +154,7 @@ module Laximo
       @query[:CategoryId] = escape(v)
       self
 
-    end # category_id
+    end
 
     def unit_id(v = nil)
 
@@ -162,7 +162,7 @@ module Laximo
       @query[:UnitId]   = escape(v)
       self
 
-    end # unit_id
+    end
 
     def filter(v = nil)
 
@@ -170,7 +170,7 @@ module Laximo
       @query[:Filter]   = escape(v)
       self
 
-    end # filter
+    end
 
     def quick_group_id(v = nil)
 
@@ -178,7 +178,7 @@ module Laximo
       @query[:QuickGroupId] = escape(v)
       self
 
-    end # quick_group_id
+    end
 
     def all(v = nil)
 
@@ -186,11 +186,11 @@ module Laximo
       @query[:All]  = (v === true || v == 1 || v == '1' ? 1 : 0)
       self
 
-    end # all
+    end
 
     def call(request)
       request.call(self.to_s)
-    end # call
+    end
 
     def to_s
 
@@ -205,7 +205,7 @@ module Laximo
       @str[0] = ''
       @str = "#{@func_name}:#{@str}"
 
-    end # to_s
+    end
 
     alias :to_str :to_s
 
@@ -213,7 +213,7 @@ module Laximo
 
     def escape(str)
       str.nil? ? nil : String(str)
-    end # escape
+    end
 
   end # Query
 

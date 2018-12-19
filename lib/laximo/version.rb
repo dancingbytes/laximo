@@ -1,6 +1,6 @@
 # encoding: utf-8
 module Laximo
 
-  VERSION = '0.7'.freeze
+  VERSION = '0.8'.freeze
 
 end # Laximo
