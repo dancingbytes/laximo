@@ -69,6 +69,13 @@ module Laximo
 
     end
 
+    def locale(str = nil)
+
+      return @locale if str.nil?
+      @locale = str
+
+    end
+
   end # Options
 
 end # Laximo

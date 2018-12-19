@@ -14,7 +14,7 @@ module Laximo
 
     def list_catalogs(
       ssd: nil,
-      locale: 'ru_RU'
+      locale: ::Laximo.options.locale
     )
 
       resp = ::Laximo::Query.
@@ -30,7 +30,7 @@ module Laximo
     def get_catalog_info(
       catalog:,
       ssd:      nil,
-      locale:   'ru_RU'
+      locale:   ::Laximo.options.locale
     )
 
       resp = ::Laximo::Query.
@@ -49,7 +49,7 @@ module Laximo
       catalog:    nil,
       ssd:        nil,
       localized:  true,
-      locale:     'ru_RU'
+      locale:     ::Laximo.options.locale
     )
 
       resp = ::Laximo::Query.
@@ -71,7 +71,7 @@ module Laximo
       catalog:    nil,
       ssd:        nil,
       localized:  true,
-      locale:     'ru_RU'
+      locale:     ::Laximo.options.locale
     )
 
       resp = ::Laximo::Query.
@@ -93,7 +93,7 @@ module Laximo
       catalog:,
       wizard_id:  nil,
       value_id:   nil,
-      locale:     'ru_RU'
+      locale:     ::Laximo.options.locale
     )
 
       ::Laximo.deprecated!
@@ -113,7 +113,7 @@ module Laximo
     def get_wizard2(
       catalog:,
       ssd:    nil,
-      locale: 'ru_RU'
+      locale: ::Laximo.options.locale
     )
 
       resp = ::Laximo::Query.
@@ -130,7 +130,7 @@ module Laximo
     def get_wizard_next_step2(
       catalog:,
       ssd:    nil,
-      locale: 'ru_RU'
+      locale: ::Laximo.options.locale
     )
 
       resp = ::Laximo::Query.
@@ -150,7 +150,7 @@ module Laximo
       wizard_id:  nil,
       ssd:        nil,
       localized:  true,
-      locale:     'ru_RU'
+      locale:     ::Laximo.options.locale
     )
 
       ::Laximo.deprecated!
@@ -171,7 +171,7 @@ module Laximo
     def find_vehicle_by_wizard2(
       catalog:,
       ssd:    nil,
-      locale: 'ru_RU'
+      locale: ::Laximo.options.locale
     )
 
       resp = ::Laximo::Query.
@@ -190,7 +190,7 @@ module Laximo
       vehicle_id:,
       ssd:        nil,
       localized:  true,
-      locale:     'ru_RU'
+      locale:     ::Laximo.options.locale
     )
 
       resp = ::Laximo::Query.
@@ -210,7 +210,7 @@ module Laximo
       catalog:,
       operation:,
       param:,
-      locale:     'ru_RU'
+      locale:  ::Laximo.options.locale
     )
 
       resp = ::Laximo::Query.
@@ -231,7 +231,7 @@ module Laximo
       ssd:          nil,
       category_id:  -1,
       localized:    true,
-      locale:       'ru_RU'
+      locale:       ::Laximo.options.locale
     )
 
       resp = ::Laximo::Query.
@@ -253,7 +253,7 @@ module Laximo
       vehicle_id:,
       ssd:          nil,
       category_id:  -1,
-      locale:       'ru_RU'
+      locale:       ::Laximo.options.locale
     )
 
       resp = ::Laximo::Query.
@@ -274,8 +274,8 @@ module Laximo
       unit_id:,
       vehicle_id:,
       filter:,
-      ssd:    nil,
-      locale: 'ru_RU'
+      ssd:      nil,
+      locale:   ::Laximo.options.locale
     )
 
       resp = ::Laximo::Query.
@@ -297,7 +297,7 @@ module Laximo
       unit_id:,
       ssd:        nil,
       localized:  true,
-      locale:     'ru_RU'
+      locale:     ::Laximo.options.locale
     )
 
       resp = ::Laximo::Query.
@@ -318,7 +318,7 @@ module Laximo
       unit_id:,
       ssd:        nil,
       localized:  true,
-      locale:     'ru_RU'
+      locale:     ::Laximo.options.locale
     )
 
       resp = ::Laximo::Query.
@@ -357,7 +357,7 @@ module Laximo
       detail_id:,
       filter:,
       ssd:      nil,
-      locale:   'ru_RU'
+      locale:   ::Laximo.options.locale
     )
 
       resp = ::Laximo::Query.
@@ -378,7 +378,7 @@ module Laximo
       catalog:,
       vehicle_id:,
       ssd:        nil,
-      locale:     'ru_RU'
+      locale:     ::Laximo.options.locale
     )
 
       resp = ::Laximo::Query.
@@ -400,7 +400,7 @@ module Laximo
       all:            1,
       ssd:            nil,
       localized:      true,
-      locale:         'ru_RU'
+      locale:         ::Laximo.options.locale
     )
 
       resp = ::Laximo::Query.

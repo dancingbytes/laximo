@@ -26,15 +26,15 @@ module Laximo
 
   def options
     ::Laximo::Options
-  end # options
+  end
 
   def am
     ::Laximo::Am.new
-  end # am
+  end
 
   def oem
     ::Laximo::Oem.new
-  end # oem
+  end
 
   def deprecated!
 
@@ -42,7 +42,7 @@ module Laximo
     puts "*** DEPRECATION WARNING! Method `#{caller[0][/`.*'/][1..-2]}` is deprecated and will not support in the future"
     puts "***"
 
-  end # depreecated!
+  end
 
 end # Laximo
 

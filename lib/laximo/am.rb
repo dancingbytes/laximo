@@ -25,7 +25,7 @@ module Laximo
       oem,
       brand:    nil,
       options:  DEFAULT_OPTIONS,
-      locale:   'ru_RU'
+      locale:   ::Laximo.options.locale
     )
 
       resp = ::Laximo::Query.
@@ -42,7 +42,7 @@ module Laximo
 
     def find_replacements(
       detail_id,
-      locale: 'ru_RU'
+      locale: ::Laximo.options.locale
     )
 
       resp = ::Laximo::Query.
@@ -58,7 +58,7 @@ module Laximo
     def find_detail(
       detail_id,
       options:  DEFAULT_OPTIONS,
-      locale:   'ru_RU'
+      locale:   ::Laximo.options.locale
     )
 
       resp = ::Laximo::Query.
@@ -75,7 +75,7 @@ module Laximo
     def find_oem_correction(
       oem,
       brand:    nil,
-      locale:   'ru_RU'
+      locale:   ::Laximo.options.locale
     )
 
       resp = ::Laximo::Query.
@@ -91,7 +91,7 @@ module Laximo
 
     def manufacturer_info(
       manufacturer_id,
-      locale: 'ru_RU'
+      locale: ::Laximo.options.locale
     )
 
       resp = ::Laximo::Query.
@@ -105,7 +105,7 @@ module Laximo
     end # manufacturer_info
 
     def list_manufacturer(
-      locale: 'ru_RU'
+      locale: ::Laximo.options.locale
     )
 
       resp = ::Laximo::Query.

@@ -6,8 +6,12 @@ module Laximo
     class ListManufacturer < Laximo::Respond::Base
 
       def parsing_result(str)
-        nodes_to_hash(str.xpath('//ListManufacturer/row'))
-      end # parsing_result
+
+        nodes_to_hash(
+          str.xpath('//ListManufacturer/row')
+        )
+
+      end
 
     end # ListManufacturer
 

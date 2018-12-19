@@ -6,8 +6,13 @@ module Laximo
     class FindReplacements < Laximo::Respond::Base
 
       def parsing_result(str)
-        nodes_to_hash(str.xpath('//FindReplacements/row'), recursive: false)
-      end # parsing_result
+
+        nodes_to_hash(
+          str.xpath('//FindReplacements/row'),
+          recursive: false
+        )
+
+      end
 
     end # FindReplacements
 
