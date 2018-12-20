@@ -3,23 +3,24 @@ module Laximo
 
   module Respond
 
-    class GetWizard < Laximo::Respond::Base
+    class FindVehicle < Laximo::Respond::Base
 
       def parsing_result(str)
 
-        str.xpath('//GetWizard/row').inject([]) { |arr, node|
+        str.xpath('//FindVehicle/row').inject([]) { |arr, node|
 
           h = node_to_hash(node) { |h1, n1|
-            h1[:options] = nodes_to_hash(node.xpath('./options/row'))
+            h1[:attributes] = nodes_to_hash(n1.xpath('./attribute'))
           }
 
           arr << h unless h.empty?
+          arr
 
         }
 
       end # parsing_result
 
-    end # GetWizard
+    end # FindVehicle
 
   end # Respond
 

@@ -6,8 +6,12 @@ module Laximo
     class ListImageMapByUnit < Laximo::Respond::Base
 
       def parsing_result(str)
-        nodes_to_hash(str.xpath('//ListImageMapByUnit/row'))
-      end # parsing_result
+
+        nodes_to_hash(
+          str.xpath('//ListImageMapByUnit/row')
+        )
+
+      end
 
     end # ListImageMapByUnit
 

@@ -6,8 +6,12 @@ module Laximo
     class GetFilterByDetail < Laximo::Respond::Base
 
       def parsing_result(str)
-        nodes_to_hash(str.xpath('//GetFilterByDetail/row'))
-      end # parsing_result
+
+        nodes_to_hash(
+          str.xpath('//GetFilterByDetail/row')
+        )
+
+      end
 
     end # GetFilterByDetail
 

@@ -14,6 +14,7 @@ module Laximo
           }
 
           arr << h unless h.empty?
+          arr
 
         }
 

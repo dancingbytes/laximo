@@ -6,8 +6,12 @@ module Laximo
     class ListQuickGroup < Laximo::Respond::Base
 
       def parsing_result(str)
-        nodes_to_hash(str.xpath('//ListQuickGroups/row'))
-      end # parsing_result
+
+        nodes_to_hash(
+          str.xpath('//ListQuickGroups/row')
+        )
+
+      end
 
     end # ListQuickGroup
 

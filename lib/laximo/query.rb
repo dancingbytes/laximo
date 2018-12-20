@@ -11,180 +11,104 @@ module Laximo
     end
 
     def locale(v = nil)
-
-      @str    = nil
-      @query[:Locale] = escape(v)
-      self
-
+      add_param(:Locale, v)
     end
 
     def ssd(v = nil)
-
-      @str          = nil
-      @query[:ssd]  = escape(v)
-      self
-
+      add_param(:ssd, v)
     end
 
     def catalog(v = nil)
-
-      @str              = nil
-      @query[:Catalog]  = escape(v)
-      self
-
+      add_param(:Catalog, v)
     end
 
     def operation(v = nil)
-
-      @str                = nil
-      @query[:operation]  = escape(v)
-      self
-
+      add_param(:operation, v)
     end
 
-    def param(v = nil)
+    def param(h = {})
 
-      @str  = nil
-      if v.is_a?(Hash) && !v.empty?
-        @query[v.keys.first] = escape(v.values.first)
-      end
+      h.each { |k, v|
+        add_param(k, v)
+      }
       self
 
     end
 
     def localized(v = false)
-
-      @str                = nil
-      @query[:Localized]  = (v === true)
-      self
-
+      add_param(:Localized, (v === true))
     end
 
     def wizard_id(v = nil)
-
-      @str              = nil
-      @query[:WizardId] = escape(v)
-      self
-
+      add_param(:WizardId, v)
     end
 
     def value_id(v = nil)
-
-      @str              = nil
-      @query[:ValueId]  = escape(v)
-      self
-
+      add_param(:ValueId, v)
     end
 
-    def options(args = [])
-
-      @str              = nil
-      @query[:Options]  = args.empty? ? nil : args.join(',')
-      self
-
+    def options(v = [])
+      add_param(:Options, v)
     end
 
     def brand(v = nil)
-
-      @str            = nil
-      @query[:Brand]  = escape(v)
-      self
-
+      add_param(:Brand, v)
     end
 
     def oem(v = nil)
-
-      @str          = nil
-      @query[:OEM]  = escape(v)
-      self
-
+      add_param(:OEM, v)
     end
 
     def detail_id(v = nil)
-
-      @str              = nil
-      @query[:DetailId] = escape(v)
-      self
-
+      add_param(:DetailId, v)
     end
 
     def manufacturer_id(v = nil)
-
-      @str                    = nil
-      @query[:ManufacturerId] = escape(v)
-      self
-
+      add_param(:ManufacturerId, v)
     end
 
     def vin(v = nil)
-
-      @str          = nil
-      @query[:VIN]  = escape(v)
-      self
-
+      add_param(:VIN, v)
     end
 
     def frame(v = nil)
-
-      @str            = nil
-      @query[:Frame]  = escape(v)
-      self
-
+      add_param(:Frame, v)
     end
 
     def frame_no(v = nil)
+      add_param(:FrameNo, v)
+    end
 
-      @str              = nil
-      @query[:FrameNo]  = escape(v)
-      self
-
+    def ident_string(v = nil)
+      add_param(:IdentString, v)
     end
 
     def vehicle_id(v = nil)
-
-      @str                = nil
-      @query[:VehicleId]  = escape(v)
-      self
-
+      add_param(:VehicleId, v)
     end
 
     def category_id(v = nil)
-
-      @str                = nil
-      @query[:CategoryId] = escape(v)
-      self
-
+      add_param(:CategoryId, v)
     end
 
     def unit_id(v = nil)
-
-      @str              = nil
-      @query[:UnitId]   = escape(v)
-      self
-
+      add_param(:UnitId, v)
     end
 
     def filter(v = nil)
-
-      @str              = nil
-      @query[:Filter]   = escape(v)
-      self
-
+      add_param(:Filter, v)
     end
 
     def quick_group_id(v = nil)
-
-      @str                  = nil
-      @query[:QuickGroupId] = escape(v)
-      self
-
+      add_param(:QuickGroupId, v)
     end
 
     def all(v = nil)
 
-      @str          = nil
-      @query[:All]  = (v === true || v == 1 || v == '1' ? 1 : 0)
-      self
+      add_param(
+        :QuickGroupId,
+        (v === true || v == 1 || v == '1' ? 1 : 0)
+      )
 
     end
 
@@ -211,8 +135,17 @@ module Laximo
 
     private
 
-    def escape(str)
-      str.nil? ? nil : String(str)
+    def add_param(k, v)
+
+      if v.is_a?(::Array)
+        @query[k] = v.empty? ? nil : v.join(',')
+      else
+        @query[k] = v.nil? ? nil : String(v)
+      end
+
+      @str = nil
+      self
+
     end
 
   end # Query

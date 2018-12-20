@@ -6,8 +6,12 @@ module Laximo
     class ListCategories < Laximo::Respond::Base
 
       def parsing_result(str)
-        nodes_to_hash(str.xpath('//ListCategories/row'))
-      end # parsing_result
+
+        nodes_to_hash(
+          str.xpath('//ListCategories/row')
+        )
+
+      end
 
     end # ListCategories
 

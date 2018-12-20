@@ -13,14 +13,12 @@ module Laximo
     end # initialize
 
     def list_catalogs(
-      ssd: nil,
       locale: ::Laximo.options.locale
     )
 
       resp = ::Laximo::Query.
         new('ListCatalogs').
         locale(locale).
-        ssd(ssd).
         call(@request)
 
       ::Laximo::Respond::ListCatalogs.new(resp)
@@ -29,14 +27,12 @@ module Laximo
 
     def get_catalog_info(
       catalog:,
-      ssd:      nil,
       locale:   ::Laximo.options.locale
     )
 
       resp = ::Laximo::Query.
         new('GetCatalogInfo').
         locale(locale).
-        ssd(ssd).
         catalog(catalog).
         call(@request)
 
@@ -47,7 +43,6 @@ module Laximo
     def find_vehicle_by_vin(
       vin:,
       catalog:    nil,
-      ssd:        nil,
       localized:  true,
       locale:     ::Laximo.options.locale
     )
@@ -55,7 +50,6 @@ module Laximo
       resp = ::Laximo::Query.
         new('FindVehicleByVIN').
         locale(locale).
-        ssd(ssd).
         catalog(catalog).
         vin(vin).
         localized(localized).
@@ -69,7 +63,6 @@ module Laximo
       frame:,
       frame_no:,
       catalog:    nil,
-      ssd:        nil,
       localized:  true,
       locale:     ::Laximo.options.locale
     )
@@ -80,7 +73,6 @@ module Laximo
         catalog(catalog).
         frame(frame).
         frame_no(frame_no).
-        ssd(ssd).
         localized(localized).
         call(@request)
 
@@ -88,27 +80,43 @@ module Laximo
 
     end # find_vehicle_by_frame
 
-    # TODO: Устаревший метод
-    def get_wizard(
-      catalog:,
-      wizard_id:  nil,
-      value_id:   nil,
+    def find_vehicle_by_frame_no(
+      frame_no:,
+      catalog:    nil,
+      localized:  true,
       locale:     ::Laximo.options.locale
     )
 
-      ::Laximo.deprecated!
-
       resp = ::Laximo::Query.
-        new('GetWizard').
+        new('FindVehicleByFrameNo').
         locale(locale).
         catalog(catalog).
-        wizard_id(wizard_id).
-        value_id(value_id).
+        frame_no(frame_no).
+        localized(localized).
         call(@request)
 
-      ::Laximo::Respond::GetWizard.new(resp)
+      ::Laximo::Respond::FindVehicleByFrameNo.new(resp)
 
-    end # get_wizard
+    end # find_vehicle_by_frame_no
+
+    def find_vehicle(
+      ident_string:,
+      catalog:    nil,
+      localized:  true,
+      locale:     ::Laximo.options.locale
+    )
+
+      resp = ::Laximo::Query.
+        new('FindVehicle').
+        locale(locale).
+        catalog(catalog).
+        ident_string(ident_string).
+        localized(localized).
+        call(@request)
+
+        ::Laximo::Respond::FindVehicle.new(resp)
+
+    end # find_vehicle
 
     def get_wizard2(
       catalog:,
@@ -143,30 +151,6 @@ module Laximo
       ::Laximo::Respond::GetWizardNextStep2.new(resp)
 
     end # get_wizard_next_step2
-
-    # TODO: Устаревший метод
-    def find_vehicle_by_wizard(
-      catalog:,
-      wizard_id:  nil,
-      ssd:        nil,
-      localized:  true,
-      locale:     ::Laximo.options.locale
-    )
-
-      ::Laximo.deprecated!
-
-      resp = ::Laximo::Query.
-        new('FindVehicleByWizard').
-        locale(locale).
-        wizard_id(wizard_id).
-        catalog(catalog).
-        ssd(ssd).
-        localized(localized).
-        call(@request)
-
-      ::Laximo::Respond::FindVehicleByWizard.new(resp)
-
-    end # find_vehicle_by_wizard
 
     def find_vehicle_by_wizard2(
       catalog:,
