@@ -38,7 +38,7 @@ module Laximo
 
       def result!
 
-        raise StandardError, error.inspect if failure?
+        raise error.class, error.message if failure?
         result
 
       end # result!
