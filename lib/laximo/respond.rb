@@ -5,9 +5,57 @@ module Laximo
 
     class Base
 
-      RESPONSE_RESULT     = '//QueryDataResponse/return'.freeze
+      RESPONSE_RESULT       = '//QueryDataResponse/return'.freeze
       RESPONSE_LOGIN_RESULT = '//QueryDataLoginResponse/return'.freeze
-      RESPONSE_SOAP_ERROR = '//Fault/faultstring'.freeze
+      RESPONSE_SOAP_ERROR   = '//Fault/faultstring'.freeze
+
+
+      class << self
+
+        def parsing_result(str)
+          ::NotImplementedError.new("Метод `parsing_result` не реализован в классе #{self.class}")
+        end
+
+        private
+
+        def node_to_hash(node)
+
+          return {} if node.nil?
+
+          h = {}
+          node.attributes.each { |key, snd|
+            h[key.to_sym] = snd.value
+          }
+
+          return {} if h.empty?
+          yield(h, node) if block_given?
+
+          h
+
+        end # node_to_hash
+
+        def nodes_to_hash(nodes, recursive: true)
+
+          arr = []
+          nodes.each { |node|
+
+            h = {}
+            node.attributes.each { |key, snd|
+              h[key.to_sym] = snd.value
+            }
+
+            if recursive
+              children      = nodes_to_hash(node.children, recursive: true)
+              h[:children]  = children unless children.empty?
+            end
+            arr << h
+
+          }
+          arr
+
+        end # nodes_to_hash
+
+      end
 
       def initialize(request)
 
@@ -20,71 +68,30 @@ module Laximo
 
       def success?
         @error.nil?
-      end # success?
+      end
 
       def failure?
         !@error.nil?
-      end # failure?
+      end
 
       alias :error? :failure?
 
       def error
         @error
-      end # error
+      end
 
       def result
         @result
-      end # result
+      end
 
       def result!
 
         raise error.class, error.message if failure?
         result
 
-      end # result!
-
-      def parsing_result(str)
-        ::NotImplementedError.new("Метод `parsing_result` не реализован в классе #{self.class.name}")
-      end # parsing_result
+      end
 
       private
-
-      def node_to_hash(node)
-
-        return {} if node.nil?
-
-        h = {}
-        node.attributes.each { |key, snd|
-          h[key.to_sym] = snd.value
-        }
-
-        return {} if h.empty?
-        yield(h, node) if block_given?
-
-        h
-
-      end # node_to_hash
-
-      def nodes_to_hash(nodes, recursive: true)
-
-        arr = []
-        nodes.each { |node|
-
-          h = {}
-          node.attributes.each { |key, snd|
-            h[key.to_sym] = snd.value
-          }
-
-          if recursive
-            children      = nodes_to_hash(node.children, recursive: true)
-            h[:children]  = children unless children.empty?
-          end
-          arr << h
-
-        }
-        arr
-
-      end # nodes_to_hash
 
       def prepare_request(request)
 
@@ -136,7 +143,7 @@ module Laximo
           res = doc.xpath(RESPONSE_RESULT).children[0].to_s if res.blank?
 
           @error  = nil
-          @result = parsing_result(
+          @result = self.class.parsing_result(
             ::Nokogiri::XML(unescape(res))
           ) || []
 
@@ -160,7 +167,7 @@ module Laximo
 
       def unescape(str)
         ::CGI::unescapeHTML str
-      end # unescape
+      end
 
     end # Base
 

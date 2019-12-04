@@ -5,7 +5,7 @@ module Laximo
 
     class GetFilterByUnit < Laximo::Respond::Base
 
-      def parsing_result(str)
+      def self.parsing_result(str)
 
         str.xpath('//GetFilterByUnit/row').inject([]) { |arr, node|
 

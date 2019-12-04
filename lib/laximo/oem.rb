@@ -408,6 +408,191 @@ module Laximo
 
     end # list_quick_detail
 
+    #
+    #  Специальные комбинированные методы
+    #
+
+    def vehicle_with_list_categories(
+      vehicle_id:,
+      catalog:,
+      ssd:,
+      category_id:    -1,
+      localized:      true,
+      locale:         ::Laximo.options.locale
+    )
+
+      # Информация о каталоге
+      r1 = ::Laximo::Query.
+        new('GetCatalogInfo').
+        locale(locale).
+        catalog(catalog).
+        ssd(ssd)
+
+      # Информация по конкретному автомобилю (модификации)
+      r2 = ::Laximo::Query.
+        new('GetVehicleInfo').
+        locale(locale).
+        catalog(catalog).
+        vehicle_id(vehicle_id).
+        ssd(ssd).
+        localized(localized)
+
+      # Список категорий каталога
+      r3 = ::Laximo::Query.
+        new('ListCategories').
+        locale(locale).
+        catalog(catalog).
+        vehicle_id(vehicle_id).
+        category_id(category_id).
+        ssd(ssd)
+
+      # Список агрегатов автомобиля.
+      r4 = ::Laximo::Query.
+        new('ListUnits').
+        locale(locale).
+        catalog(catalog).
+        vehicle_id(vehicle_id).
+        category_id(category_id).
+        ssd(ssd).
+        localized(localized)
+
+      ::Laximo::Respond::VehicleWithListCategories.new(
+        @request.call(r1, r2, r3, r4)
+      )
+
+    end # vehicle_with_list_categories
+
+    def vehicle_with_list_quick_groups(
+      vehicle_id:,
+      catalog:,
+      ssd:,
+      localized:        true,
+      locale:           ::Laximo.options.locale
+    )
+
+      # Информация о каталоге
+      r1 = ::Laximo::Query.
+        new('GetCatalogInfo').
+        locale(locale).
+        catalog(catalog).
+        ssd(ssd)
+
+      # Информация по конкретному автомобилю (модификации)
+      r2 = ::Laximo::Query.
+        new('GetVehicleInfo').
+        locale(locale).
+        catalog(catalog).
+        vehicle_id(vehicle_id).
+        ssd(ssd).
+        localized(localized)
+
+      # Список групп быстрого поиска деталей
+      r3 = ::Laximo::Query.
+        new('ListQuickGroup').
+        locale(locale).
+        catalog(catalog).
+        vehicle_id(vehicle_id).
+        ssd(ssd)
+
+      ::Laximo::Respond::VehicleWithListQuickGroups.new(
+        @request.call(r1, r2, r3)
+      )
+
+    end
+
+    def vehicle_with_list_quick_detail(
+      vehicle_id:,
+      catalog:,
+      ssd:,
+      quick_group_id:,
+      all:              1,
+      localized:        true,
+      locale:           ::Laximo.options.locale
+    )
+
+      # Информация о каталоге
+      r1 = ::Laximo::Query.
+        new('GetCatalogInfo').
+        locale(locale).
+        catalog(catalog).
+        ssd(ssd)
+
+      # Информация по конкретному автомобилю (модификации)
+      r2 = ::Laximo::Query.
+        new('GetVehicleInfo').
+        locale(locale).
+        catalog(catalog).
+        vehicle_id(vehicle_id).
+        ssd(ssd).
+        localized(localized)
+
+      # Список групп быстрого поиска деталей
+      r3 = ::Laximo::Query.
+        new('ListQuickDetail').
+        locale(locale).
+        catalog(catalog).
+        vehicle_id(vehicle_id).
+        quick_group_id(quick_group_id).
+        all(all).
+        ssd(ssd)
+
+      ::Laximo::Respond::VehicleWithListQuickDetail.new(
+        @request.call(r1, r2, r3)
+      )
+
+    end
+
+    def vehicle_with_list_details_by_unit(
+      vehicle_id:,
+      catalog:,
+      ssd:,
+      unit_id:,
+      localized:        true,
+      locale:           ::Laximo.options.locale
+    )
+
+      r1 = ::Laximo::Query.
+        new('GetUnitInfo').
+        locale(locale).
+        catalog(catalog).
+        ssd(ssd).
+        unit_id(unit_id).
+        localized(localized)
+
+      r2 = ::Laximo::Query.
+        new('ListDetailByUnit').
+        locale(locale).
+        catalog(catalog).
+        ssd(ssd).
+        unit_id(unit_id).
+        localized(localized)
+
+      r3 = ::Laximo::Query.
+        new('ListImageMapByUnit').
+        catalog(catalog).
+        ssd(ssd).
+        unit_id(unit_id)
+
+      r4 = ::Laximo::Query.
+        new('GetCatalogInfo').
+        locale(locale).
+        catalog(catalog).
+        ssd(ssd)
+
+      r5 = ::Laximo::Query.
+        new('GetVehicleInfo').
+        locale(locale).
+        catalog(catalog).
+        vehicle_id(vehicle_id).
+        ssd(ssd).
+        localized(localized)
+
+      ::Laximo::Respond::VehicleWithListDetailsByUnit.new(
+        @request.call(r1, r2, r3, r4, r5)
+      )
+
+    end
+
   end # Oem
 
 end # Laximo

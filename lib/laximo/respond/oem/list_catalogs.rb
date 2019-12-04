@@ -5,7 +5,7 @@ module Laximo
 
     class ListCatalogs < Laximo::Respond::Base
 
-      def parsing_result(str)
+      def self.parsing_result(str)
 
         str.xpath('//ListCatalogs/row').inject([]) { |arr, node|
 

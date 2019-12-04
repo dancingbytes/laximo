@@ -5,7 +5,7 @@ module Laximo
 
     class Manufacturer_Info < Laximo::Respond::Base
 
-      def parsing_result(str)
+      def self.parsing_result(str)
 
         nodes_to_hash(
           str.xpath('//ManufacturerInfo/row')

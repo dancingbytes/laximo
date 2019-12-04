@@ -5,7 +5,7 @@ module Laximo
 
     class GetWizardNextStep2 < Laximo::Respond::Base
 
-      def parsing_result(str)
+      def self.parsing_result(str)
 
         str.xpath('//GetWizardNextStep2').inject([]) { |arr, node|
 

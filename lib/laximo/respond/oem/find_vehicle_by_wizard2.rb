@@ -5,7 +5,7 @@ module Laximo
 
     class FindVehicleByWizard2 < Laximo::Respond::Base
 
-      def parsing_result(str)
+      def self.parsing_result(str)
 
         str.xpath('//FindVehicleByWizard2/row').inject([]) { |arr, node|
 

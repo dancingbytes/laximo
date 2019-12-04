@@ -5,7 +5,7 @@ module Laximo
 
     class FindOemCorrection < Laximo::Respond::Base
 
-      def parsing_result(str)
+      def self.parsing_result(str)
 
         str.xpath('//FindOEMCorrection/detail').inject([]) { |arr, node|
 

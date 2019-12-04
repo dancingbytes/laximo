@@ -1,7 +1,7 @@
 # encoding: utf-8
 module Laximo
 
-  REQUEST_LOGIN_MSG = %q(<?xml version="1.0" encoding="UTF-8"?>
+  REQUEST_LOGIN_MSG = %{<?xml version="1.0" encoding="UTF-8"?>
 <SOAP-ENV:Envelope SOAP-ENV:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
 xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/">
@@ -12,7 +12,7 @@ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:SOAP-ENC="http://sch
       <hmac xsi:type="xsd:string">%{hash}</hmac>
     </ns5692:QueryDataLogin>
   </SOAP-ENV:Body>
-</SOAP-ENV:Envelope>).freeze
+</SOAP-ENV:Envelope>}.freeze
 
   class Request
 
@@ -30,7 +30,9 @@ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:SOAP-ENC="http://sch
 
     end
 
-    def call(msg)
+    def call(*args)
+
+      msg = args.join("\n")
 
       @request.body = (REQUEST_LOGIN_MSG % {
         msg:   msg,

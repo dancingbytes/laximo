@@ -5,7 +5,7 @@ module Laximo
 
     class GetCatalogInfo < Laximo::Respond::Base
 
-      def parsing_result(str)
+      def self.parsing_result(str)
 
         str.xpath('//GetCatalogInfo/row').inject([]) { |arr, node|
 
@@ -25,7 +25,7 @@ module Laximo
 
         }
 
-      end # parsing_result
+      end
 
     end # GetCatalogInfo
 

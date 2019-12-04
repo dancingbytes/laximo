@@ -5,7 +5,7 @@ module Laximo
 
     class FindVehicleByFrameNo < Laximo::Respond::Base
 
-      def parsing_result(str)
+      def self.parsing_result(str)
 
         str.xpath('//FindVehicleByFrameNo/row').inject([]) { |arr, node|
 

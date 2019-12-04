@@ -5,7 +5,7 @@ module Laximo
 
     class FindOem < Laximo::Respond::Base
 
-      def parsing_result(str)
+      def self.parsing_result(str)
 
         str.xpath('//FindOEM/detail').inject([]) { |arr, node|
 

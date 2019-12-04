@@ -5,7 +5,7 @@ module Laximo
 
     class GetUnitInfo < Laximo::Respond::Base
 
-      def parsing_result(str)
+      def self.parsing_result(str)
 
         str.xpath('//GetUnitInfo/row').inject([]) { |arr, node|
 

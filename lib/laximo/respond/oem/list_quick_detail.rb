@@ -5,7 +5,7 @@ module Laximo
 
     class ListQuickDetail < Laximo::Respond::Base
 
-      def parsing_result(str)
+      def self.parsing_result(str)
 
         str.xpath('//ListQuickDetail/Category').inject([]) { |arr, node|
 

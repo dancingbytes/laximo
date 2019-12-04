@@ -5,7 +5,7 @@ module Laximo
 
     class ExecCustomOperation < Laximo::Respond::Base
 
-      def parsing_result(str)
+      def self.parsing_result(str)
 
         str.xpath('//ExecCustomOperation/row').inject([]) { |arr, node|
 

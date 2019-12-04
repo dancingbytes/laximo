@@ -5,7 +5,7 @@ module Laximo
 
     class FindDetail < Laximo::Respond::Base
 
-      def parsing_result(str)
+      def self.parsing_result(str)
 
         str.xpath('//FindDetails/detail').inject([]) { |arr, node|
 

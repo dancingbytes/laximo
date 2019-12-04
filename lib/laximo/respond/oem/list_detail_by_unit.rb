@@ -5,7 +5,7 @@ module Laximo
 
     class ListDetailByUnit < Laximo::Respond::Base
 
-      def parsing_result(str)
+      def self.parsing_result(str)
 
         str.xpath('//ListDetailsByUnit/row').inject([]) { |arr, node|
 

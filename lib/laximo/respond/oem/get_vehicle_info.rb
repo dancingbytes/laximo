@@ -5,7 +5,7 @@ module Laximo
 
     class GetVehicleInfo < Laximo::Respond::Base
 
-      def parsing_result(str)
+      def self.parsing_result(str)
 
         str.xpath('//GetVehicleInfo/row').inject([]) { |arr, node|
 
@@ -18,7 +18,7 @@ module Laximo
 
         }
 
-      end # parsing_result
+      end
 
     end # GetVehicleInfo
 
