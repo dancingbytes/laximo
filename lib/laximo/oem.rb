@@ -118,7 +118,7 @@ module Laximo
         localized(localized).
         call(@request)
 
-        ::Laximo::Respond::FindVehicle.new(resp)
+      ::Laximo::Respond::FindVehicle.new(resp)
 
     end # find_vehicle
 
@@ -466,8 +466,8 @@ module Laximo
       vehicle_id:,
       catalog:,
       ssd:,
-      localized:        true,
-      locale:           ::Laximo.options.locale
+      localized: true,
+      locale:    ::Laximo.options.locale
     )
 
       # Информация о каталоге
@@ -547,8 +547,8 @@ module Laximo
       catalog:,
       ssd:,
       unit_id:,
-      localized:        true,
-      locale:           ::Laximo.options.locale
+      localized: true,
+      locale:    ::Laximo.options.locale
     )
 
       r1 = ::Laximo::Query.

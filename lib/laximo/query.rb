@@ -106,7 +106,7 @@ module Laximo
     def all(v = nil)
 
       add_param(
-        :QuickGroupId,
+        :All,
         (v === true || v == 1 || v == '1' ? 1 : 0)
       )
 
