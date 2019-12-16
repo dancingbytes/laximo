@@ -36,6 +36,27 @@ module Laximo
     ::Laximo::Oem.new
   end
 
+  def tryer(try_iter: 5, time: 25)
+
+    begin
+
+      cl = caller_locations(1,1).first
+      yield
+
+    rescue ::Laximo::SoapTooManyRequestError
+
+      try_iter = try_iter - 1
+
+      puts "[#{cl}] Waiting #{time} sec..."
+      sleep time
+
+      retry if try_iter > 0
+      raise
+
+    end
+
+  end
+
   def deprecated!
 
     puts "***"
