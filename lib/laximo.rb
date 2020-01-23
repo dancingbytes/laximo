@@ -36,24 +36,19 @@ module Laximo
     ::Laximo::Oem.new
   end
 
-  def tryer(try_iter: 5, time: 25)
+  def tryer(try_iter: 10, time: 61)
 
-    begin
+    cl = caller[0][/`.*'/][1..-2]
+    yield
 
-      cl = caller_locations(1,1).first
-      yield
+  rescue ::Laximo::SoapTooManyRequestError
 
-    rescue ::Laximo::SoapTooManyRequestError
+    try_iter = try_iter - 1
 
-      try_iter = try_iter - 1
+    puts "[Method: #{cl}] Waiting #{time} sec."
+    sleep time
 
-      puts "[#{cl}] Waiting #{time} sec..."
-      sleep time
-
-      retry if try_iter > 0
-      raise
-
-    end
+    try_iter > 0 ? retry : raise
 
   end
 
