@@ -23,6 +23,10 @@ module Laximo
 
   class SoapTooManyRequestError < ::Laximo::Error; end
 
+  class SoapUnexpectedError  < ::Laximo::Error; end
+
+  class SoapEmptyResponseError  < ::Laximo::Error; end
+
   ERRORS = {
 
     'E_CATALOGNOTEXISTS'        => SoapCatalogNotExistsError,
@@ -32,7 +36,8 @@ module Laximo
     'E_ACCESSDENIED'            => SoapAccessDeniedError,
     'E_NOTSUPPORTED'            => SoapNotSupportedError,
     'E_GROUP_IS_NOT_SEARCHABLE' => SoapGroupIsNotSearchableError,
-    'E_TOO_MANY_REQUESTS'       => SoapTooManyRequestError
+    'E_TOO_MANY_REQUESTS'       => SoapTooManyRequestError,
+    'E_UNEXPECTED_PROBLEM'      => SoapUnexpectedError
 
   }.freeze
 

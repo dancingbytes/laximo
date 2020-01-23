@@ -147,6 +147,9 @@ module Laximo
             ::Nokogiri::XML(unescape(res))
           ) || []
 
+          return @result unless @result.empty?
+          @error = ::Laximo::SoapEmptyResponseError.new('Empty response')
+
         rescue ::Exception => ex
 
           @result = []
@@ -160,7 +163,7 @@ module Laximo
 
         err_name, msg = err_txt.split(':')
 
-        err_cls = Laximo::ERRORS[err_name] || ::Laximo::SoapError
+        err_cls = ::Laximo::ERRORS[err_name] || ::Laximo::SoapError
         err_cls.new(msg)
 
       end # soap_errors
