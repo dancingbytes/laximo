@@ -147,8 +147,9 @@ module Laximo
             ::Nokogiri::XML(unescape(res))
           ) || []
 
-          return @result unless @result.empty?
-          @error = ::Laximo::SoapEmptyResponseError.new('Empty response')
+          if @result.empty? && ::Laximo.options.raise_on_empty_response?
+            @error = ::Laximo::SoapEmptyResponseError.new('Empty response')
+          end
 
         rescue ::Exception => ex
 

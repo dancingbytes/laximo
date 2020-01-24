@@ -10,3 +10,5 @@ Laximo.options.am_soap_endpoint  'https://aws.laximo.net/ec.Kito.Aftermarket/ser
 
 Laximo.options.oem_soap_action   'http://WebCatalog.Kito.ec'
 Laximo.options.oem_soap_endpoint 'https://ws.laximo.net/ec.Kito.WebCatalog/services/Catalog.CatalogHttpSoap11Endpoint/'
+
+Laximo.options.raise_on_empty_response false

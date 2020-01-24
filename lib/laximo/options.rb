@@ -76,6 +76,14 @@ module Laximo
 
     end
 
+    def raise_on_empty_response(str = nil)
+      @raise_on_empty_response = (str === true)
+    end
+
+    def raise_on_empty_response?
+      @raise_on_empty_response === true
+    end
+
   end # Options
 
 end # Laximo

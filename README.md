@@ -31,6 +31,7 @@ Laximo.options.locale             'ru_RU'
   * `Laximo.options.am_soap_endpoint 'url'` - soap endpoint для web-сервиса [Laximo.Aftermarket](http://laximo.net/index.php/Laximo_Web-services:AM:Laximo.Aftermarket) (по-умолчанию, `https://aws.laximo.net/ec.Kito.Aftermarket/services/Catalog.CatalogHttpSoap12Endpoint/`
   * `Laximo.options.oem_soap_action 'url'` - soap action для web-сервиса [Laximo.OEM](http://laximo.net/index.php/Laximo_Web-services:OEM:Laximo.OEM) (по-умолчанию, `http://WebCatalog.Kito.ec`)
   * `Laximo.options.oem_soap_endpoint 'url'` - soap endpoint для web-сервиса [Laximo.OEM](http://laximo.net/index.php/Laximo_Web-services:OEM:Laximo.OEM) (по-умолчанию, `https://ws.laximo.net/ec.Kito.WebCatalog/services/Catalog.CatalogHttpSoap12Endpoint/`)
+  * `Laximo.options.raise_on_empty_response` - выбрасывать ошибку (Laximo::SoapEmptyResponseError), если ответ сервиса пуст (по-умолчанию, false). К сожалению, у сервиса Лаксима не всегда полные днанные: у узла деталей в ВИН-кодах модет не быть списка деталей. В этом случае, можно отловить эту ошибку и пометить ВИН-номер как неполный для повторного запроса к сервиму Лаксимы.
 
 ### Методы web-сервиса [Laximo.Aftermarket](https://laximo.ru/am/)
   * [Laximo.am.find_oem(oem, brand: nil, options: [], locale: 'ru_RU')](http://wiki.technologytrade.ru/index.php/Laximo_Web-services:AM:FindOEM)
@@ -100,8 +101,10 @@ res.result   # [{:detailid=>"31454425", :formattedoem=>"078100105NX", :manufactu
   * `Laximo::SoapUnknownCommandError` - команда не известна
   * `Laximo::SoapAccessDeniedError` - доступ запрещен
   * `Laximo::SoapNotSupportedError` - функция не поддерживается каталогом
-  * `SoapGroupIsNotSearchableError` - поиск по группе запрещён, в связи с слишком большим количеством входящих в группу узлов
+  * `Laximo::SoapGroupIsNotSearchableError` - поиск по группе запрещён, в связи с слишком большим количеством входящих в группу узлов
   * `Laximo::SoapError` - общая ошибка протокола SOAP
+  * `Laximo::SoapUnexpectedError` - неизвестная ошибка сервиса
+  * `Laximo::SoapEmptyResponseError` - пустой ответ сервера
 
 ```ruby
 res = Laximo.oem.get_filter_by_detail(catalog: 'AP1211', unit_id: '', detail_id: '', filter: '')
@@ -119,4 +122,4 @@ res.result   # []
 
 [Список контрибьюторов](https://github.com/dancingbytes/laximo/graphs/contributors)
 
-Copyright (c) 2015-2019 DansingBytes.ru, под лицензией BSD
+Copyright (c) 2015-2020 DansingBytes.ru, под лицензией BSD
