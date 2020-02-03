@@ -411,6 +411,52 @@ module Laximo
     #
     #  Специальные комбинированные методы
     #
+    def vehicle_with_list_categories_and_quick_groups(
+      vehicle_id:,
+      catalog:,
+      ssd:,
+      localized:  true,
+      locale:     ::Laximo.options.locale
+    )
+
+      # Информация о каталоге
+      r1 = ::Laximo::Query.
+        new('GetCatalogInfo').
+        locale(locale).
+        catalog(catalog).
+        ssd(ssd)
+
+      # Информация по конкретному автомобилю (модификации)
+      r2 = ::Laximo::Query.
+        new('GetVehicleInfo').
+        locale(locale).
+        catalog(catalog).
+        vehicle_id(vehicle_id).
+        ssd(ssd).
+        localized(localized)
+
+      # Список категорий каталога
+      r3 = ::Laximo::Query.
+        new('ListCategories').
+        locale(locale).
+        catalog(catalog).
+        vehicle_id(vehicle_id).
+        category_id(-1).
+        ssd(ssd)
+
+      # Список групп быстрого поиска деталей
+      r4 = ::Laximo::Query.
+        new('ListQuickGroup').
+        locale(locale).
+        catalog(catalog).
+        vehicle_id(vehicle_id).
+        ssd(ssd)
+
+      ::Laximo::Respond::VehicleWithListCategoriesAndQuickGroups.new(
+        @request.call(r1, r2, r3, r4)
+      )
+
+    end # vehicle_with_list_categories_and_quick_groups
 
     def vehicle_with_list_categories(
       vehicle_id:,
